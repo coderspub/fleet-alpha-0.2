@@ -14,6 +14,11 @@ export class HomeComponent implements OnInit {
   }
 device1(){
   this.router.navigate(['/maps']);
+  localStorage.setItem('deviceId','1');
+}
+device2(){
+  this.router.navigate(['/maps']);
+  localStorage.setItem('deviceId','2');
 }
 
 
