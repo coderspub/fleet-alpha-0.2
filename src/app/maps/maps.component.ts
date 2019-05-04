@@ -28,7 +28,7 @@ export class MapsComponent implements OnInit {
       attributions: 'www.sharath.com'
     
     }).addTo(this.map);
-    leaflet.marker([13.0827,80.2707]).addTo(this.map);
+    leaflet.marker([13.0827,80.2706]).addTo(this.map);
   }
 
 }
