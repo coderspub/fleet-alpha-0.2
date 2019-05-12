@@ -6,7 +6,10 @@ import { Injectable } from '@angular/core';
 export class FleetMapService {
 
   constructor() { }
-  retriveDeviceId(){
-    return localStorage.getItem('deviceId');
+  retriveAppId(){
+    return localStorage.getItem('a_id');
+  }
+  retriveCustomerId(){
+    return localStorage.getItem('c_id');
   }
 }
