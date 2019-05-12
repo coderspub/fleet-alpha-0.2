@@ -15,6 +15,7 @@ export class MapsComponent implements OnInit {
    val:JSON;
    lat:string;
    long:string;
+   publicIp:string  = "35.244.17.132:5000";
    @ViewChild('map') mapContainer: ElementRef;
  
   constructor(private fleetMap:FleetMapService,private http: HttpClient) { 
@@ -33,7 +34,7 @@ export class MapsComponent implements OnInit {
       "a_id":this.a_id
     }
   
-    this.http.post("http://192.168.0.114:5000/location",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
+    this.http.post("http://"+this.publicIp+"/location",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
       d=>{
         this.val=d as JSON;
         this.lat = this.val['latitude'];
@@ -41,6 +42,10 @@ export class MapsComponent implements OnInit {
       }
     )
     this.addmarker();
+    console.log(this.lat);
+    console.log(this.long);
+    console.log(this.a_id);
+    console.log(this.c_id);
   }
   loadmap() {
  
@@ -56,6 +61,7 @@ export class MapsComponent implements OnInit {
     console.log("adding marker");
     console.log(this.val);
     leaflet.marker([this.lat,this.long]).addTo(this.map);
+    this.map.panTo([this.lat,this.long]);
   }
 
 }
