@@ -13,17 +13,15 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 device1(){
-  this.router.navigate(['/maps']);
+  this.router.navigate(['dashboard/maps']);
   localStorage.setItem('c_id','BS0001');
   localStorage.setItem('a_id','S001');
 }
 device2(){
-  this.router.navigate(['/maps']);
+  this.router.navigate(['dashboard/maps']);
   localStorage.setItem('c_id','BS0001');
   localStorage.setItem('a_id','S002');
 }
-signout(){
-  this.router.navigate(['/']);
-}
+
 
 }

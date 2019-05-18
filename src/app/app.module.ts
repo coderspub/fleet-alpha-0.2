@@ -8,7 +8,10 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MapsComponent } from './maps/maps.component';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SupportComponent } from './support/support.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,12 +19,16 @@ import { MapsComponent } from './maps/maps.component';
     SignupComponent,
     HomeComponent,
     WelcomeComponent,
-    MapsComponent
+    MapsComponent,
+    DashboardComponent,
+    ProfileComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

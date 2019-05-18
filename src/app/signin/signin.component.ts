@@ -13,6 +13,6 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
   }
   signin(){
-   this.router.navigate(['/home']);
+   this.router.navigate(['/dashboard']);
   }
 }

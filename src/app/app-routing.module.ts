@@ -5,13 +5,23 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MapsComponent } from './maps/maps.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SupportComponent } from './support/support.component';
 
 const routes: Routes = [
   {path : "" , component:WelcomeComponent},
   {path : "signin" , component:SigninComponent},
   {path : "signup" , component:SignupComponent},
-  {path : "home" , component:HomeComponent},
-  {path : "maps" , component:MapsComponent},
+  {path: "dashboard" , component:DashboardComponent,
+  children : [
+    {path : "",component : HomeComponent},
+    {path : "maps" , component : MapsComponent},
+    {path : "profile", component : ProfileComponent},
+    {path:"support",component:SupportComponent}
+  ]
+  }
+
   
 ];
 

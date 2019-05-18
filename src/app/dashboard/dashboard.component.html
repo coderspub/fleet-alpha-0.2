@@ -1,0 +1,24 @@
+<div id="mySidenav" class="sidenav shadow-lg border-right">
+  <div href="javascript:void(0)" class="closebtn" (click)="closeNav()" id="times">&times;</div>
+  <a routerLink = "/dashboard" (click)="closeNav()"><h5>Home</h5></a>
+  <a routerLink = "/dashboard/profile" (click)="closeNav()"><h5>Profile</h5></a>
+  <a routerLink = "/dashboard/support" (click)="closeNav()"><h5>Support</h5></a>
+</div>
+
+<!-- Use any element to open the sidenav -->
+
+<div class="d-flex justify-content-between border-bottom shadow-sm mb-1 bg-white" id="dashboardheader">
+
+  <div id="dashboardmain">
+      
+    <h3><i class="fas fa-bars" (click)="openNav()"></i>Ynep Tracking</h3>
+  </div>
+  <div id="dashboardmain">
+    <button class="btn btn-primary" (click)="signout()">signout</button>
+  </div>
+</div>
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+  <router-outlet></router-outlet>
+</div>
