@@ -6,22 +6,43 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  toggler:boolean =true;
+  time = new Date();
+  timer;
 
   constructor(private router : Router) { }
 
   ngOnInit() {
+    this.timer = setInterval(() => {
+      this.time = new Date();
+    }, 1000);
   }
-  /* Set the width of the side navigation to 250px */
-  openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+  toggle(){
+if(this.toggler ==true){
+  document.getElementById("sidebar-wrapper").style.width = "250px";
+  document.getElementById("page-content-wrapper").style.paddingLeft = "250px";
+  this.toggler = false;
+  console.log(this.toggler);
+}
+else{
+  document.getElementById("sidebar-wrapper").style.width = "0px";
+  document.getElementById("page-content-wrapper").style.paddingLeft = "0px";
+  this.toggler =true;
+  console.log(this.toggler);
+}
   }
-  
-  /* Set the width of the side navigation to 0 */
-  closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+  sideNavCLose(){
+    document.getElementById("sidebar-wrapper").style.width = "0px";
+    document.getElementById("page-content-wrapper").style.paddingLeft = "0px";
   }
+settings(){
+  console.log("settings");
+}
   signout(){
     console.log("signout");
     this.router.navigate(['/']);
+  }
+  ngOnDestroy(){
+    clearInterval(this.timer);
   }
 }
