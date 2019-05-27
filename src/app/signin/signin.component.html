@@ -1,29 +1,31 @@
 
-<div class="container container-fluid shadow p-3 mb-5 bg-white rounded " id="main">
-  <div class="row " id="siginholder">
-    <div class="col">
-      <h5>Experience the next generation tracking</h5>
+<div class="signin-bg ">
+<div class="container-fluid container d-flex align-items-center signin-holder">
+  <div class="bg-white rounded signin-content animated fadeIn">
+  <div class="row">
+    <div class="col signin-content-left">
+<h1>hello</h1>
     </div>
-    <div class="col">
-      <div>
-        <h1 class="text-center">x-compass FMS</h1>
-        <h5 class="text-center">Sign in</h5>
-          <form>
-              <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="emailHelp">
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password">
-              </div>
-              <button type="submit" class="btn btn-primary" (click)="signin()">Sign in</button>
-              <button class="btn btn-link">Forgot Password?</button>
-            </form>
-      </div>
-
+    <div class="col signin-content-right">
+        <div>
+            <h1 class="text-center">x-compass FMS</h1>
+            <h5 class="text-center">Sign in</h5>
+              <form>
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password">
+                    <button class="btn btn-link forgot-password">Forgot Password?</button>
+                  </div>
+                  <button type="submit" class="btn btn-primary signin-options" (click)="signin()">Sign in</button>
+                  <button type="submit" class="btn btn-primary signin-options" (click)="signoutRedirect()">Create an account</button>
+                </form>
+          </div>
     </div>
   </div>
 </div>
-<div class="container-fluid welcome">
+</div>
 </div>

@@ -9,10 +9,14 @@ export class DashboardComponent implements OnInit {
   toggler:boolean =true;
   time = new Date();
   timer;
+  loader:boolean = true;
 
   constructor(private router : Router) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.loader=false;
+    }, 4000);
     this.timer = setInterval(() => {
       this.time = new Date();
     }, 1000);

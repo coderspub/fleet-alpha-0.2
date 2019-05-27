@@ -1,7 +1,13 @@
 .profileholder{
-    padding: 5em;
+    padding: 2em;
     margin: 1em;
+    z-index: 2;
 }
-.fa-user-circle{
-    font-size: 10em;
+.imgholder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.avatar{
+    height:200px;
 }

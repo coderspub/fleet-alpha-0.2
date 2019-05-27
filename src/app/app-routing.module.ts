@@ -8,11 +8,13 @@ import { MapsComponent } from './maps/maps.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SupportComponent } from './support/support.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {path : "" , component:WelcomeComponent},
   {path : "signin" , component:SigninComponent},
   {path : "signup" , component:SignupComponent},
+  {path : "register" , component:RegisterComponent},
   {path: "dashboard" , component:DashboardComponent,
   children : [
     {path : "",component : HomeComponent},

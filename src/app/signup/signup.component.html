@@ -1,3 +1,68 @@
-<p>
-  signup works!
-</p>
+<div class="signin-bg ">
+  <div class="container-fluid container d-flex align-items-center signin-holder">
+    <div class="bg-white rounded signin-content animated fadeIn">
+      <div class="row">
+        <div class="col signin-content-left">
+          <h1>hello</h1>
+        </div>
+        <div class="col signin-content-right">
+
+          <div>
+            <h1 class="text-center">x-compass FMS</h1>
+            <h5 class="text-center">Sign up</h5>
+            <form (ngSubmit)="register(g)" #g="ngForm">
+              <div class="form-group">
+                <label for="username">E-mail</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" ngModel name="email" #email="ngModel" >
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" ngModel name="passwrd" #passwrd="ngModel">
+              </div>
+              <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Register
+              </button>
+              <button class="btn btn-link" (click)="signInReroute()">Already Registered?</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enter OTP</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form (ngSubmit)="process(f)" #f="ngForm">
+              <div class="form-group">
+                <label for="otp">Please enter the OTP that was sent to the E-mail you provided arlier</label>
+                <div class="alert alert-success" role="alert" *ngIf = "showEmailAlert">
+                  The OTP has been Sent to your Email 
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf = "invalidOTP">
+                  <Strong>Error : </Strong>The OTP you entered does not seem to match!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf = "emptyOTP">
+                  <Strong>Error : </Strong>The OTP field cannot be left blank
+                </div>
+                <input type="text" class="form-control" id="otp" aria-describedby="otp" ngModel name="otp" #otp="ngModel" >
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" >Submit</button>
+                  <button type="button" class="btn btn-secondary"  (click) ="resendEmail()">Resend</button>
+                </div>
+            </form>
+      </div>
+
+    </div>
+  </div>
+</div>

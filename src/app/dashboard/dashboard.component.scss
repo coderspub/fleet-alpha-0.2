@@ -1,6 +1,7 @@
 
 /* Sidebar */
 #sidebar-wrapper {
+  padding-top:4em;
   z-index: 1;
   position: absolute;
   width: 0;
@@ -33,6 +34,7 @@
   display: block;
   text-decoration: none;
   color: #ddd;
+  padding: 0.5em;
 }
 
 .sidebar-nav li a:hover {
@@ -50,6 +52,8 @@
 .notifications,.menu{
   font-size: 1.5em;
 }
+
+//loader
 
 
 

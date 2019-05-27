@@ -1,6 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col shadow bg-white rounded device device-1">
+          <h5>Devices Registered</h5>
+          <h2><b>2</b></h2>
+        </div>
+        <div class="col shadow bg-white rounded device device-2">
+          <h5>Devices Active</h5>
+          <h2><b>2</b></h2>
+        </div>
+        <div class="col shadow bg-white rounded device device-3">
+          <h5>Devices Shutdown</h5>
+          <h2><b>0</b></h2>
+        </div>
+      </div>
+      <div id="dashboarddata">
+          <button class="btn btn-primary" (click)="device1()">device 1</button>
+          <button class="btn btn-primary" (click)="device2()">device 2</button>
+        </div>
+      <div>
+          <div class="dropdown">
+              <button class="btn btn-secondary btn-lg  dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button">Action</button>
+                <button class="dropdown-item" type="button">Another action</button>
+                <button class="dropdown-item" type="button">Something else here</button>
+              </div>
+            </div>
+      </div>
+      
+</div>
 
-<div id="dashboarddata bg-light">
-    <button class="btn btn-primary" (click)="device1()">device 1</button>
-    <button class="btn btn-primary" (click)="device2()">device 2</button>
-  </div>
 

@@ -12,6 +12,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SupportComponent } from './support/support.component';
+import { LoaderComponent } from './loader/loader.component';
+import { FormsModule } from '@angular/forms';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,15 +26,18 @@ import { SupportComponent } from './support/support.component';
     MapsComponent,
     DashboardComponent,
     ProfileComponent,
-    SupportComponent
+    SupportComponent,
+    LoaderComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ { provide : LocationStrategy,useClass:HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

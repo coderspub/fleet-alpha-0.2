@@ -1,0 +1,21 @@
+
+.signin-bg{
+    background-image: linear-gradient(#049e9c, #001e3a);
+    height:100vh;
+}
+.signin-holder{
+    height: 100vh;
+}
+.signin-content{
+    width: 100%;
+    padding:5em;
+    animation-delay: 0.2s;
+}
+@media (max-width: 767.98px) { 
+    .signin-content-left{
+        display: none;
+    }
+    .signin-content{
+        padding:1em;
+    }
+}

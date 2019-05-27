@@ -13,6 +13,7 @@ export class WelcomeComponent implements OnInit {
   }
   signin(){
     this.router.navigate(['/signin'])
+
   }
   signup(){
     this.router.navigate(['/signup'])

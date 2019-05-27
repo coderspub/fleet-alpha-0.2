@@ -1,5 +1,4 @@
 <div id="wrapper">
-  <!-- Sidebar -->
   <div id="sidebar-wrapper" class="shadow-sm">
     <ul class="sidebar-nav">
       <li><a routerLink="/dashboard" (click)="sideNavCLose()">Home</a></li>
@@ -10,14 +9,14 @@
   <div id="page-content-wrapper">
     <nav class="navbar navbar-light bg-white shadow-sm border-bottom">
       <div>
-        <h3><button class="btn btn-link"> <i class="fas fa-bars menu" (click)="toggle()"></i></button>Ynep Tracking</h3>
+        <h3><button class="btn btn-link" (click)="toggle()"> <i class="fas fa-bars menu"></i></button>x-compass FMS</h3>
       </div>
       <div>
         <h6>{{ time | date: 'hh:mm:ss a' }}</h6>
       </div>
 
       <div class="d-flex flex-row">
-        <button class="btn btn-link"> <i class="fas fa-bell notifications"></i></button>
+        <button class="btn btn-link"> <i class="fas fa-bell notifications"></i><span class="badge badge-success align-top">7</span></button>
         <button class="btn btn-link"> <i class="fas fa-cog settings" (click)="settings()"></i></button>
         <button class="btn btn-primary" (click)="signout()">signout</button>
       </div>
@@ -31,3 +30,5 @@
     </div>
   </div>
 </div>
+<!--loader-->
+<app-loader *ngIf="loader"></app-loader>

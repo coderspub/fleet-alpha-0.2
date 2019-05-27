@@ -1,19 +1,60 @@
-button{
-    margin:1em;
+
+.welcome-bg-left {
+  background-image: linear-gradient(#049e9c, #001e3a);
+  clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+  height:100vh;
+  button {
+    margin-right: 2em;
+    margin-top: 0.5em;
     padding-left: 2em;
     padding-right: 2em;
+  }
 }
-.welcome{
-clip-path: polygon(0 0, 75% 0, 43% 100%, 0% 100%);
-background-image: linear-gradient(#049e9c,#001e3a);
-position: absolute;
-top:0;
-left:0;
-bottom:0;
+.welcome-title{
+    color: white;
+    font-size: 4rem;
 }
-.main{
-margin-top: 15%;
+
+.welcome-subtitle{
+    color: white;
 }
-.font{
-color: white;
+.welcome-content{
+    margin-left: 10%;
+    animation-delay: 0.5s;
+}
+.welcome-bg-right{
+    height: 100vh;
+}
+@media (max-width: 768px) { 
+    .welcome-bg-left {
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%); 
+        width:100%;
+    }
+    .welcome-bg-right{
+        display: none;
+        width:0%;
+        padding:0px;
+        margin:0px;
+    }
+    .welcome-content{
+        margin-left: 0%;
+    }
+    .img-side{
+        display: none;
+    }
+    .welcome-title,.welcome-subtitle{
+       text-align: center;
+    }
+    .welcome-title{
+        font-size: 3rem;
+    }
+    .welcome-button{
+        display: flex;
+        button{
+            margin-right: 0;
+            margin-top: 0.5em;
+        }
+        justify-content: space-around;
+    }
+
 }

@@ -1,11 +1,17 @@
-<div class="container-fluid welcome shadow-lg">
-  <div class="container main container-fluid">
-      <h1 class="font display-2"><b>x-compass </b> FMS</h1>
-      <h5 class="font">The Revolutionary tracking experience</h5>
-      <div class="d-flex row">
-        <button type="button" class="btn btn-outline-light shadow-sm" (click)="signin()">Signin</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-sm-12 welcome-bg-left d-flex align-items-center " id="welcome-bg-left">
+      <div class="welcome-content d-flex justify-content-lg-start  flex-column signin-content animated fadeIn">
+      <h1 class="welcome-title display-3">Xcompass FMS</h1>
+      <h5 class="welcome-subtitle">The Revolutionary tracking experience</h5>
+      <div class="welcome-button">
+        <button type="button" class="btn btn-outline-light shadow-sm " (click)="signin()">Signin</button>
         <button type="button" class="btn btn-outline-light shadow-sm" (click)="signup()">Signup</button>
       </div>
+    </div>
+    </div>
+    <div class="col welcome-bg-right d-flex align-self-center p-5" id="welcome-bg-right">
+      <img src="assets/images/land.svg " alt="" class="img-fluid img-side">
+    </div>
   </div>
-
 </div>

@@ -15,4 +15,7 @@ export class SigninComponent implements OnInit {
   signin(){
    this.router.navigate(['/dashboard']);
   }
+  signoutRedirect(){
+    this.router.navigate(['/signup']);
+   }
 }
