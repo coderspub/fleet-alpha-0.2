@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import leaflet from 'leaflet';
+import 'leaflet-routing-machine'; 
 import { FleetMapService } from '../fleet-map.service';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -15,8 +16,11 @@ export class MapsComponent implements OnInit {
    a_id:string;
    c_id:string;
    val:JSON;
-   lat:string;
-   long:string;
+   theMarker :any;
+   
+   lat:string = "13.0827";
+   long:string ="80.2707";
+   mylat:number = 13.0827;
    publicIp:string  = "35.244.17.132:5000";
    showSpinner:boolean=true;
    @ViewChild('map') mapContainer: ElementRef;
@@ -79,17 +83,31 @@ export class MapsComponent implements OnInit {
       attributions: 'www.sharath.com'
     
     }).addTo(this.map);
+     this.theMarker = leaflet.marker([this.lat,this.long]).addTo(this.map);
     
   }
   addmarker(){
     console.log("adding marker");
-    console.log(this.val);
-    leaflet.marker([this.lat,this.long]).addTo(this.map);
-    this.map.panTo([this.lat,this.long]);
+    // console.log(this.val);
+    // leaflet.marker([this.lat,this.long]).addTo(this.map);
+    // leaflet.marker.setLatLng([this.lat,this.long]);
+console.log(this.lat);
+this. mylat += 0.01;
+this.lat = this.mylat.toString();
+this.theMarker.remove();
+this.theMarker = leaflet.marker([this.lat,this.long]).addTo(this.map);
+this.map.panTo([this.lat,this.long]);
   }
   signout(){
     console.log("signout");
     this.router.navigate(['/']);
   }
-
+ showRoute(){  
+  leaflet.Routing.control({
+    waypoints: [
+      leaflet.latLng(13.0500,  80.2121),
+      leaflet.latLng(13.1148,  80.2872)
+    ]
+  }).addTo(this.map);
+ }
 }
