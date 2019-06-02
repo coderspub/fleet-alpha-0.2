@@ -26,7 +26,9 @@ export class MapsComponent implements OnInit {
    @ViewChild('map') mapContainer: ElementRef;
  
   constructor(private fleetMap:FleetMapService,private http: HttpClient,private spinner: NgxSpinnerService,private router : Router) { 
-
+    // setInterval(()=>{
+    //   this.addmarker();
+    //   },200);
   }
 
   ngOnInit() {

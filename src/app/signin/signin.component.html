@@ -10,18 +10,24 @@
         <div>
             <h1 class="text-center">x-compass FMS</h1>
             <h5 class="text-center">Sign in</h5>
-              <form>
+              <form (ngSubmit) = "signin(f)" #f="ngForm">
+                  <div class="alert alert-danger" role="alert" *ngIf = "invalid">
+                      Invalid Credentials!
+                  </div>
+                  <!-- <div class="alert alert-success" role="alert" *ngIf = "valid">
+                      Success!
+                  </div> -->
                   <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp">
+                    <label for="username">Email</label>
+                    <input type="email" class="form-control" id="username" aria-describedby="emailHelp" ngModel name="email_id" #email_id="ngModel">
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" class="form-control" id="password" ngModel name="passwd" #passwd="ngModel">
                     <button class="btn btn-link forgot-password">Forgot Password?</button>
                   </div>
-                  <button type="submit" class="btn btn-primary signin-options" (click)="signin()">Sign in</button>
-                  <button type="submit" class="btn btn-primary signin-options" (click)="signoutRedirect()">Create an account</button>
+                  <button type="submit" class="btn btn-primary signin-options" >Sign in</button>
+                  <button  class="btn btn-primary signin-options" (click)="signoutRedirect()">Create an account</button>
                 </form>
           </div>
     </div>

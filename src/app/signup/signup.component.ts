@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms'
+import { NgForm } from '@angular/forms';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 declare var $: any;
 @Component({
   selector: 'app-signup',
@@ -11,8 +12,10 @@ export class SignupComponent implements OnInit {
   showEmailAlert : boolean = false;
   invalidOTP : boolean = false;
   emptyOTP : boolean = false;
-
-  constructor(private router:Router) { }
+  publicIp:string  = "35.244.17.132:5000";
+  val:JSON;
+  registered:boolean =false;
+  constructor(private router:Router,private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -23,30 +26,69 @@ export class SignupComponent implements OnInit {
     
     console.log(form.value); //get full object
     console.log(form.value.otp); //get only email value
-    if(form.value.otp == 1234){
-      $('#exampleModal').modal('hide')
-      this.router.navigate(['/register']);
-    }
-    else if(form.value.otp == '' || undefined || null){
-      this.emptyOTP = true;
-      setTimeout(() => {
-        this.emptyOTP = false;
-      }, 1000);
-    }
-    else{
-      this.invalidOTP = true;
+    const data = { "email_id" : sessionStorage.getItem("email_id"),"otp":form.value.otp};
+    this.http.post("http://"+this.publicIp+"/VerifyOTP",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
+      d=>{
+        console.log(d);
+        this.val=d as JSON; 
+        console.log(this.val);
+        if(this.val['status']){
+          $('#exampleModal').modal('hide')
+          this.router.navigate(['/register']);
+        }
+        else{
+               this.invalidOTP = true;
       setTimeout(() => {
         this.invalidOTP = false;
       }, 1000);
-    }
+        }
+      },
+      (error)=>(console.log(error))
+    );
+
+    // if(form.value.otp == 1234){
+    //   $('#exampleModal').modal('hide')
+    //   this.router.navigate(['/register']);
+    // }
+    // else if(form.value.otp == '' || undefined || null){
+    //   this.emptyOTP = true;
+    //   setTimeout(() => {
+    //     this.emptyOTP = false;
+    //   }, 1000);
+    // }
+    // else{
+    //   this.invalidOTP = true;
+    //   setTimeout(() => {
+    //     this.invalidOTP = false;
+    //   }, 1000);
+    // }
     
   }
  
 
   register(form:NgForm){
-    
-    sessionStorage.setItem("email",form.value.email);
-    sessionStorage.setItem("passwrd",form.value.passwrd);
+    const data = form.value;
+    console.log(data);
+    sessionStorage.setItem("email_id",form.value.email_id);
+    this.http.post("http://"+this.publicIp+"/SignUpOTP",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
+      d=>{
+        console.log(d);
+        this.val=d as JSON; 
+        if(this.val['status']){
+          $('#exampleModal').modal('show')
+        }
+        else{
+          this.registered = true;
+          setTimeout(() => {
+            this.registered = false;
+          }, 3000);
+        }
+       
+      },
+      (error)=>(console.log(error))
+    );
+    // sessionStorage.setItem("email",form.value.email);
+    // sessionStorage.setItem("passwrd",form.value.passwrd);
   }
   resendEmail(){
     console.log("sending email");

@@ -4,26 +4,26 @@
     <div class="bg-white rounded register-content animated fadeIn">
         <div>
             <h1 class="text-center">x-compass FMS</h1>
-            <h5 class="text-center">Sign in</h5>
-              <form>
+            <h5 class="text-center">Register</h5>
+              <form (ngSubmit)="register(g)" #g="ngForm">
                   <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="companyname">Company Name</label>
-                        <input type="text" class="form-control" id="companyname" >
+                        <input type="text" class="form-control" id="companyname" ngModel name="company_name" #company_name="ngModel" >
                       </div>
                       <div class="form-group col-md-6">
                         <label for="phonenumber">Phone Number</label>
-                        <input type="text" class="form-control" id="phonenumber">
+                        <input type="text" class="form-control" id="phonenumber" ngModel name="phonenumber" #phonenumber="ngModel">
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-8">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address">
+                        <input type="text" class="form-control" id="address" ngModel name="address" #address="ngModel">
                       </div>
                       <div class="form-group col">
                           <label for="address">Country</label>
-                          <select id="country" name="country" class="form-control">
+                          <select id="country" name="country" class="form-control"  ngModel name="country" #country="ngModel">
                               <option value="Afghanistan">Afghanistan</option>
                               <option value="Åland Islands">Åland Islands</option>
                               <option value="Albania">Albania</option>
@@ -272,7 +272,7 @@
                         </div>
                         <div class="form-group col">
                             <label for="zipcode">Zip Code</label>
-                            <input type="text" class="form-control" id="zipcode">
+                            <input type="text" class="form-control" id="zipcode"  ngModel name="zipcode" #zipcode="ngModel">
                             </div>
                     </div>
                     <!-- <div class="form-row">
@@ -291,16 +291,26 @@
                         <div class=" form-group col">
                         </div>
                       </div> -->
-                      <div class="form-group">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="termsandconditions">
-                            <label class="form-check-label" for="gridCheck">
-                              I agree to terms and conditions
-                            </label>
-                          </div>
-                          </div>
-                      
-                  <button type="submit" class="btn btn-primary register-options " (click)="register()">Register</button>
+
+                          <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="companyname">Password</label>
+                                <input type="text" class="form-control" id="password" ngModel name="passwd" #passwd="ngModel" >
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="phonenumber">Confirm Password</label>
+                                <input type="text" class="form-control" id="confirmpassword"  ngModel name="confirmpasswd" #confirmpasswd="ngModel">
+                              </div>
+                            </div> 
+                            <!-- <div class="form-group">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" id="termsandconditions"  ngModel name="terms" #passwrd="terms">
+                                  <label class="form-check-label" for="gridCheck">
+                                    I agree to terms and conditions
+                                  </label>
+                                </div>
+                                </div> -->
+                  <button type="submit" class="btn btn-primary register-options ">Register</button>
                 </form>
           </div>
   </div>
