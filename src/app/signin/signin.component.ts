@@ -9,7 +9,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  publicIp:string  = "35.244.17.132:5000";
+  publicIp:string  = "api.xcompass.ml";
   status : boolean = false;
   val:JSON;
   invalid : boolean = false;
@@ -20,11 +20,14 @@ export class SigninComponent implements OnInit {
   }
   signin(form:NgForm){
     const data = form.value;
+    console.log(form.value);
+    if(form.valid){
     this.http.post("http://"+this.publicIp+"/Authorize",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
       d=>{
         console.log(d);
         this.val=d as JSON; 
         this.status =this.val['status'];
+        
           if(this.status == true){
           this.router.navigate(['/dashboard']);
           setTimeout(() => {
@@ -35,14 +38,18 @@ export class SigninComponent implements OnInit {
             this.invalid = true;
             setTimeout(() => {
               this.invalid = false;
-            }, 2000);
+            }, 4000);
           }
       },
       (error)=>(console.log(error))
     );
+    }
+    else{
+      console.log("form empty");
+    }
   //  this.router.navigate(['/dashboard']);
   // console.log(form.value);
-  console.log(this.status);
+  // console.log(this.status);
   // if(this.status == true){
   //   this.router.navigate(['/dashboard']);
   //   setTimeout(() => {

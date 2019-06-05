@@ -7,23 +7,32 @@
             <h5 class="text-center">Register</h5>
               <form (ngSubmit)="register(g)" #g="ngForm">
                   <div class="form-row">
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-6" [class.was-validated]="company_name.touched && !company_name.valid">
                         <label for="companyname">Company Name</label>
-                        <input type="text" class="form-control" id="companyname" ngModel name="company_name" #company_name="ngModel" >
+                        <input type="text" class="form-control" id="companyname" ngModel name="company_name" #company_name="ngModel" autofocus required>
+                        <div class="invalid-feedback" *ngIf="company_name.touched && !company_name.valid">
+                            Company Name is required
+                          </div>
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-6" [class.was-validated]="phonenumber.touched && !phonenumber.valid ">
                         <label for="phonenumber">Phone Number</label>
-                        <input type="text" class="form-control" id="phonenumber" ngModel name="phonenumber" #phonenumber="ngModel">
+                        <input type="text" class="form-control" id="phonenumber" ngModel name="phonenumber" #phonenumber="ngModel" required  pattern= "(7|8|9)\d{9}">
+                        <div class="invalid-feedback" *ngIf="phonenumber.touched && !phonenumber.valid">
+                            Phonenumber is required
+                          </div>
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-group col-8">
+                      <div class="form-group col-8" [class.was-validated]="address.touched && !address.valid ">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" ngModel name="address" #address="ngModel">
+                        <input type="text" class="form-control" id="address" ngModel name="address" #address="ngModel" required>
+                        <div class="invalid-feedback" *ngIf="address.touched && !address.valid">
+                            Address is required
+                          </div>
                       </div>
-                      <div class="form-group col">
+                      <div class="form-group col" [class.was-validated]="country.touched && !country.valid ">
                           <label for="address">Country</label>
-                          <select id="country" name="country" class="form-control"  ngModel name="country" #country="ngModel">
+                          <select id="country" name="country" class="form-control"  ngModel name="country" #country="ngModel" required>
                               <option value="Afghanistan">Afghanistan</option>
                               <option value="Åland Islands">Åland Islands</option>
                               <option value="Albania">Albania</option>
@@ -269,10 +278,17 @@
                               <option value="Zambia">Zambia</option>
                               <option value="Zimbabwe">Zimbabwe</option>
                           </select>
+                          <div class="invalid-feedback" *ngIf="country.touched && !country.valid">
+                              Country is required
+                            </div>
                         </div>
-                        <div class="form-group col">
+                        <div class="form-group col" [class.was-validated]="zipcode.touched && !zipcode.valid">
+                          
                             <label for="zipcode">Zip Code</label>
-                            <input type="text" class="form-control" id="zipcode"  ngModel name="zipcode" #zipcode="ngModel">
+                            <input type="text" class="form-control" id="zipcode"  ngModel name="zipcode" #zipcode="ngModel" required>
+                            <div class="invalid-feedback" *ngIf="zipcode.touched && !zipcode.valid">
+                                Zipcode is required
+                              </div>
                             </div>
                     </div>
                     <!-- <div class="form-row">
@@ -293,13 +309,24 @@
                       </div> -->
 
                           <div class="form-row">
-                              <div class="form-group col-md-6">
-                                <label for="companyname">Password</label>
-                                <input type="text" class="form-control" id="password" ngModel name="passwd" #passwd="ngModel" >
+                              <div class="form-group col-md-6" [class.was-validated]="passwd.touched && !passwd.valid">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" ngModel name="passwd" #passwd="ngModel" required>
+                                <div class="invalid-feedback" *ngIf="passwd.errors?.required">
+                                    Password is required
+                                  </div>
                               </div>
-                              <div class="form-group col-md-6">
-                                <label for="phonenumber">Confirm Password</label>
-                                <input type="text" class="form-control" id="confirmpassword"  ngModel name="confirmpasswd" #confirmpasswd="ngModel">
+                              <div class="form-group col-md-6" >
+                                <label for="confirmpassword">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmpassword"  ngModel name="confirmpasswd" #confirmpasswd="ngModel" required compare="passwd">
+                                <div class="text-danger" *ngIf="confirmpasswd.touched  && !confirmpasswd.valid">
+                                    
+                                    <small *ngIf = confirmpasswd.errors?.required>Password is required </small>
+                                    <small *ngIf="confirmpasswd.errors?.compare">
+                                        Password do not match
+                                    </small>
+                                </div>
+                                  
                               </div>
                             </div> 
                             <!-- <div class="form-group">
@@ -310,7 +337,7 @@
                                   </label>
                                 </div>
                                 </div> -->
-                  <button type="submit" class="btn btn-primary register-options ">Register</button>
+                  <button type="submit" class="btn btn-primary register-options "[disabled]="!g.valid">Register</button>
                 </form>
           </div>
   </div>

@@ -16,6 +16,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { FormsModule } from '@angular/forms';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
+import { CompareValidatorDirective } from './shared/compare-validator.directive';
+import { AutofocusDirective } from './shared/autofocus.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,9 @@ import { RegisterComponent } from './register/register.component';
     ProfileComponent,
     SupportComponent,
     LoaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    CompareValidatorDirective,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,

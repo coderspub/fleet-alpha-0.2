@@ -21,7 +21,7 @@ export class MapsComponent implements OnInit {
    lat:string = "13.0827";
    long:string ="80.2707";
    mylat:number = 13.0827;
-   publicIp:string  = "35.244.17.132:5000";
+   publicIp:string  = "api.xcompass.ml";
    showSpinner:boolean=true;
    @ViewChild('map') mapContainer: ElementRef;
  

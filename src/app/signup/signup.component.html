@@ -11,13 +11,17 @@
             <h1 class="text-center">x-compass FMS</h1>
             <h5 class="text-center">Sign up</h5>
             <form (ngSubmit)="register(g)" #g="ngForm">
-              <div class="form-group">
-                  <div class="alert alert-danger" role="alert" *ngIf = "registered">
-                      <b>Already Registered!</b>
-                  </div>
+                <div class="alert alert-danger" role="alert" *ngIf = "registered">
+                    <b>Already Registered!</b>
+                </div>
+              <div class="form-group"[class.was-validated]="email_id.touched && !email_id.valid">
                 <label for="username">E-mail</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" ngModel name="email_id" #email_id="ngModel" >
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" ngModel name="email_id" #email_id="ngModel" required email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" appAutofocus>
+                <div class="invalid-feedback" *ngIf="email_id.touched && !email_id.valid ">
+                    Email is required
+                  </div>
               </div>
+            
               <!-- <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" ngModel name="passwrd" #passwrd="ngModel">
@@ -25,7 +29,7 @@
               <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Register
               </button> -->
-              <button type="submit" class="btn btn-primary" >
+              <button type="submit" class="btn btn-primary" [disabled]="!g.valid" >
                   Register
                 </button>
               <button class="btn btn-link" (click)="signInReroute()">Already Registered?</button>

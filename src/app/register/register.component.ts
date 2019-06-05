@@ -7,20 +7,24 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  publicIp:string  = "35.244.17.132:5000";
+  publicIp:string  = "api.xcompass.ml";
   val:JSON;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
-  
+  log(x){
+    console.log(x);
+  }
   register(form:NgForm){
     let data = form.value;
+    if(form.valid){
+
+    
     // data.push({"email_id":sessionStorage.getItem("email_id")});
     data.email_id = sessionStorage.getItem("email_id");
     console.log(data);
-    if(form.value.passwd == form.value.confirmpasswd && form.value.passwd !=''){
-      console.log("passwords match")
+ 
       this.http.post("http://"+this.publicIp+"/SignUp",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
         d=>{
           console.log(d);
@@ -30,8 +34,9 @@ export class RegisterComponent implements OnInit {
       );
     }
     else{
-      
+      console.log("form not filled");
     }
+   
   }
 
 }

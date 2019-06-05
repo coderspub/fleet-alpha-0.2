@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
   showEmailAlert : boolean = false;
   invalidOTP : boolean = false;
   emptyOTP : boolean = false;
-  publicIp:string  = "35.244.17.132:5000";
+  publicIp:string  = "api.xcompass.ml";
   val:JSON;
   registered:boolean =false;
   constructor(private router:Router,private http: HttpClient) { }

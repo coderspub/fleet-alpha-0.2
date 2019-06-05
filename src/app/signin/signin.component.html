@@ -11,23 +11,32 @@
             <h1 class="text-center">x-compass FMS</h1>
             <h5 class="text-center">Sign in</h5>
               <form (ngSubmit) = "signin(f)" #f="ngForm">
-                  <div class="alert alert-danger" role="alert" *ngIf = "invalid">
+                  <div class="alert alert-danger animated fadeOut delay-3s" role="alert" *ngIf = "invalid">
                       Invalid Credentials!
                   </div>
+          
+                  
                   <!-- <div class="alert alert-success" role="alert" *ngIf = "valid">
                       Success!
                   </div> -->
-                  <div class="form-group">
-                    <label for="username">Email</label>
-                    <input type="email" class="form-control" id="username" aria-describedby="emailHelp" ngModel name="email_id" #email_id="ngModel">
+                  <div class="form-group" [class.was-validated]="email_id.touched && !email_id.valid">
+                    <label for="username" class="control-label">Email</label>
+                    <input type="email" class="form-control" id="username" aria-describedby="emailHelp" required ngModel name="email_id" #email_id="ngModel" appAutofocus email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <div class="invalid-feedback" *ngIf="email_id.touched && !email_id.valid ">
+                      Email is required
+                    </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" [class.was-validated]="passwd.touched && !passwd.valid">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" ngModel name="passwd" #passwd="ngModel">
+                    <input type="password" class="form-control" id="password" ngModel name="passwd" #passwd="ngModel" required>
+                    <div class="invalid-feedback" *ngIf="passwd.touched && !passwd.valid">
+                      Password is required
+                    </div>
                     <button class="btn btn-link forgot-password">Forgot Password?</button>
                   </div>
-                  <button type="submit" class="btn btn-primary signin-options" >Sign in</button>
+                  <button type="submit" class="btn btn-primary signin-options" [disabled]="!f.valid">Sign in</button>
                   <button  class="btn btn-primary signin-options" (click)="signoutRedirect()">Create an account</button>
+            
                 </form>
           </div>
     </div>
