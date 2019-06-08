@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import leaflet from 'leaflet';
 import 'leaflet-routing-machine'; 
 import { FleetMapService } from '../fleet-map.service';
@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.scss']
 })
-export class MapsComponent implements OnInit {
+export class MapsComponent implements OnInit, OnDestroy {
    deviceId:string;
    map: any;
    a_id:string;
    c_id:string;
    val:JSON;
    theMarker :any;
-   
+   refresher:any;
    lat:string = "13.0827";
    long:string ="80.2707";
    mylat:number = 13.0827;
@@ -26,9 +26,9 @@ export class MapsComponent implements OnInit {
    @ViewChild('map') mapContainer: ElementRef;
  
   constructor(private fleetMap:FleetMapService,private http: HttpClient,private spinner: NgxSpinnerService,private router : Router) { 
-    // setInterval(()=>{
-    //   this.addmarker();
-    //   },200);
+    this.refresher= setInterval(()=>{
+      this.addmarker();
+      },200);
   }
 
   ngOnInit() {
@@ -37,6 +37,11 @@ export class MapsComponent implements OnInit {
   
     this.loadmap();
     // this.getdata();
+  
+   
+  }
+  ngOnDestroy() {
+    clearInterval(this.refresher);
   }
   getdata(){
     const data = {
@@ -112,4 +117,5 @@ this.map.panTo([this.lat,this.long]);
     ]
   }).addTo(this.map);
  }
+
 }

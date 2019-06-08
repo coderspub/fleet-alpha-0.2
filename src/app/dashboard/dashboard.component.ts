@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.loader=false;
-    }, 4000);
+    }, 6000);
     this.timer = setInterval(() => {
       this.time = new Date();
     }, 1000);

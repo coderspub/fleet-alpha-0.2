@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-register',
@@ -9,7 +10,9 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 export class RegisterComponent implements OnInit {
   publicIp:string  = "api.xcompass.ml";
   val:JSON;
-  constructor(private http: HttpClient) { }
+  status:boolean = false;
+  loader:boolean = true;
+  constructor(private http: HttpClient,private router:Router) { }
 
   ngOnInit() {
   }
@@ -28,7 +31,13 @@ export class RegisterComponent implements OnInit {
       this.http.post("http://"+this.publicIp+"/SignUp",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
         d=>{
           console.log(d);
-          this.val=d as JSON;    
+          this.val=d as JSON;  
+          if(this.val['status']){
+            setTimeout(() => {
+              this.loader=false;
+            }, 1000);
+            this.router.navigate(['/signin']);
+          }  
         },
         (error)=>(console.log(error))
       );

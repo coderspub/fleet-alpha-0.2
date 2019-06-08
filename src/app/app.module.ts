@@ -18,6 +18,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { CompareValidatorDirective } from './shared/compare-validator.directive';
 import { AutofocusDirective } from './shared/autofocus.directive';
+import { Loader2Component } from './loader2/loader2.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { AutofocusDirective } from './shared/autofocus.directive';
     LoaderComponent,
     RegisterComponent,
     CompareValidatorDirective,
-    AutofocusDirective
+    AutofocusDirective,
+    Loader2Component
   ],
   imports: [
     BrowserModule,
