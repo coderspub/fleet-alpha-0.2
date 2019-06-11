@@ -19,6 +19,10 @@ import { RegisterComponent } from './register/register.component';
 import { CompareValidatorDirective } from './shared/compare-validator.directive';
 import { AutofocusDirective } from './shared/autofocus.directive';
 import { Loader2Component } from './loader2/loader2.component';
+import { PersontrackingComponent } from './persontracking/persontracking.component';
+import { PersontrackingdetailsComponent } from './persontrackingdetails/persontrackingdetails.component';
+import { PersontrackingnavComponent } from './persontrackingnav/persontrackingnav.component';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,14 +38,20 @@ import { Loader2Component } from './loader2/loader2.component';
     RegisterComponent,
     CompareValidatorDirective,
     AutofocusDirective,
-    Loader2Component
+    Loader2Component,
+    PersontrackingComponent,
+    PersontrackingdetailsComponent,
+    PersontrackingnavComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     NgxSpinnerModule,
-    FormsModule
+    FormsModule,
+    NgxQRCodeModule
   ],
   providers: [ { provide : LocationStrategy,useClass:HashLocationStrategy }],
   bootstrap: [AppComponent]

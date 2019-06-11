@@ -8,11 +8,14 @@
     </div>
     <div class="col signin-content-right">
         <div>
-            <h1 class="text-center">x-compass FMS</h1>
+            <img src="assets/images/xcompass.svg" alt="" class="img-fluid mx-auto d-block">
             <h5 class="text-center">Sign in</h5>
               <form (ngSubmit) = "signin(f)" #f="ngForm">
                   <div class="alert alert-danger animated fadeOut delay-3s" role="alert" *ngIf = "invalid">
                       Invalid Credentials!
+                  </div>
+                  <div class="alert alert-warning" role="alert" *ngIf = "forgotpassword">
+                      The Password was sent to the registered E-mail
                   </div>
           
                   
@@ -32,7 +35,7 @@
                     <div class="invalid-feedback" *ngIf="passwd.touched && !passwd.valid">
                       Password is required
                     </div>
-                    <button class="btn btn-link forgot-password">Forgot Password?</button>
+                    <button class="btn btn-link forgot-password" (click)="forgotpass()">Forgot Password?</button>
                   </div>
                   <button type="submit" class="btn btn-primary signin-options" [disabled]="!f.valid">Sign in</button>
                   <button  class="btn btn-primary signin-options" (click)="signoutRedirect()">Create an account</button>

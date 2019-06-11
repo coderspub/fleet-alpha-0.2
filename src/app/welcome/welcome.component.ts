@@ -9,11 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent implements OnInit {
-  
+  loader:boolean = true;
   constructor(private router : Router) { }
 
   ngOnInit() {
-    
+    console.log("started");
+    setTimeout(() => {
+      this.loader=false;
+    }, 6000);
+    console.log("ended");
   }
   
   signin(){

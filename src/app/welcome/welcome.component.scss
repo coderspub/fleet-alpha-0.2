@@ -21,11 +21,11 @@
 }
 .welcome-content{
     margin-left: 10%;
-    animation-delay: 0.5s;
+
 }
 .welcome-bg-right{
     height: 100vh;
-    animation-delay: 0.5s;
+
 }
 @media (max-width: 768px) { 
     .welcome-bg-left {
@@ -59,4 +59,8 @@
         justify-content: space-around;
     }
 
+}
+.img{
+    width:200px;
+    float: right;
 }

@@ -9,6 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SupportComponent } from './support/support.component';
 import { RegisterComponent } from './register/register.component';
+import { PersontrackingComponent } from './persontracking/persontracking.component';
+import { PersontrackingdetailsComponent } from './persontrackingdetails/persontrackingdetails.component';
 
 const routes: Routes = [
   {path : "" , component:WelcomeComponent},
@@ -20,7 +22,13 @@ const routes: Routes = [
     {path : "",component : HomeComponent},
     {path : "maps" , component : MapsComponent},
     {path : "profile", component : ProfileComponent},
-    {path:"support",component:SupportComponent}
+    {path:"support",component:SupportComponent},
+    {path:"persontracking",
+    children : [
+      {path : "" , component:PersontrackingComponent},
+      {path:"persontrackingdetails",component:PersontrackingdetailsComponent},
+    ]
+  }
   ]
   }
 

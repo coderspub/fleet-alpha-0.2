@@ -1,0 +1,37 @@
+<div class="container container-fluid ">
+<app-persontrackingnav></app-persontrackingnav>
+  <div class="row">
+  <div class="formholder col-8 bg-white rounded  shadow ">
+      <h1>Add Person</h1>
+    <form (ngSubmit) = "addapp(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="emp_name">Employee Name</label>
+        <input type="text" class="form-control" id="emp_name" ngModel name="employee_name" #employee_name="ngModel">
+      </div>
+      <div class="form-group">
+        <label for="phonenumber">Phone Number</label>
+        <input type="text" class="form-control" id="phonenumber" ngModel name="phonenumber" #phonenumber="ngModel">
+      </div>
+      <div class="form-group">
+        <label for="designation">Designation</label>
+        <input type="text" class="form-control" id="designation" ngModel name="designation" #designation="ngModel">
+      </div>
+      <button type="submit" class="btn btn-primary">Add App</button>
+    </form>
+  </div>
+  <div class="steps col bg-white rounded  shadow ">
+    <ul>
+      <li><b><h5>Step1</h5></b>
+        Fill in the details, to generate a QR code
+      </li>
+      <li><b><h5>Step2</h5></b>
+        Scan the QR code, with the app to be tracked
+      </li>
+      <li><b><h5>Step3</h5></b>
+      You are Done!
+      </li>
+    </ul>
+  </div>
+
+</div>
+</div>

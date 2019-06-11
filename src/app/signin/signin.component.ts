@@ -14,15 +14,18 @@ export class SigninComponent implements OnInit {
   val:JSON;
   invalid : boolean = false;
   valid:boolean = false;
+   data:any;
+   forgotpassword:boolean=false;
   constructor(private router:Router,private http: HttpClient) { }
 
   ngOnInit() {
   }
   signin(form:NgForm){
-    const data = form.value;
+    this.data = form.value;
     console.log(form.value);
-    if(form.valid){
-    this.http.post("http://"+this.publicIp+"/Authorize",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
+    sessionStorage.setItem("email_id",form.value.email_id);
+    if(form.valid || form.value.email_id!='' || form.value.passwd!=''){
+    this.http.post("http://"+this.publicIp+"/Authorize",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
       d=>{
         console.log(d);
         this.val=d as JSON; 
@@ -44,9 +47,7 @@ export class SigninComponent implements OnInit {
       (error)=>(console.log(error))
     );
     }
-    else{
-      console.log("form empty");
-    }
+   
   //  this.router.navigate(['/dashboard']);
   // console.log(form.value);
   // console.log(this.status);
@@ -62,9 +63,33 @@ export class SigninComponent implements OnInit {
   //       this.invalid = false;
   //     }, 2000);
   // }
- 
+
   }
   signoutRedirect(){
     this.router.navigate(['/signup']);
+   }
+   forgotpass(){
+    console.log("forgot");
+    try{
+      if(this.data.email_id!=''){
+        console.log("forgot");
+        this.forgotpassword  = true;
+        setTimeout(() => {
+          this.forgotpassword = false;
+        }, 4000);
+        console.log("sending email")
+       }
+       else{
+         console.log("email blank")
+       }
+       
+    }
+   catch{
+     console.log("error")
+   }
+     
+     
+   
+     
    }
 }
