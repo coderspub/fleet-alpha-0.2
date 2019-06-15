@@ -25,8 +25,8 @@ const routes: Routes = [
     {path:"support",component:SupportComponent},
     {path:"persontracking",
     children : [
-      {path : "" , component:PersontrackingComponent},
-      {path:"persontrackingdetails",component:PersontrackingdetailsComponent},
+      {path : "" ,component:PersontrackingdetailsComponent },
+      {path:"persontrackingdetails", component:PersontrackingComponent},
     ]
   }
   ]

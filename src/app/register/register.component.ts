@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
   val:JSON;
   status:boolean = false;
   loader:boolean = true;
+  spinner:boolean = true;
   constructor(private http: HttpClient,private router:Router) { }
 
   ngOnInit() {
@@ -21,6 +22,7 @@ export class RegisterComponent implements OnInit {
   }
   register(form:NgForm){
     let data = form.value;
+    this.spinner = false;
     if(form.valid){
 
     
@@ -31,7 +33,8 @@ export class RegisterComponent implements OnInit {
       this.http.post("http://"+this.publicIp+"/SignUp",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
         d=>{
           console.log(d);
-          this.val=d as JSON;  
+          this.val=d as JSON; 
+          this.spinner = true; 
           if(this.val['status']){
             setTimeout(() => {
               this.loader=false;

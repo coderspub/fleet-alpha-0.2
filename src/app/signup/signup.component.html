@@ -32,6 +32,7 @@
               <button type="submit" class="btn btn-primary" [disabled]="!g.valid" >
                   Register
                 </button>
+                <span class="spinner-border text-success align-middle" role="status" [hidden] = "spinner"></span>
               <button class="btn btn-link" (click)="signInReroute()">Already Registered?</button>
             </form>
           </div>

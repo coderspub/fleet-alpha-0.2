@@ -16,6 +16,7 @@ export class SigninComponent implements OnInit {
   valid:boolean = false;
    data:any;
    forgotpassword:boolean=false;
+   spinner:boolean = true;
   constructor(private router:Router,private http: HttpClient) { }
 
   ngOnInit() {
@@ -24,11 +25,13 @@ export class SigninComponent implements OnInit {
     this.data = form.value;
     console.log(form.value);
     sessionStorage.setItem("email_id",form.value.email_id);
+    this.spinner = false;
     if(form.valid || form.value.email_id!='' || form.value.passwd!=''){
     this.http.post("http://"+this.publicIp+"/Authorize",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
       d=>{
         console.log(d);
         this.val=d as JSON; 
+        this.spinner = true;
         this.status =this.val['status'];
         
           if(this.status == true){

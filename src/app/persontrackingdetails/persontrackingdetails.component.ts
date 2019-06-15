@@ -17,11 +17,14 @@ export class PersontrackingdetailsComponent implements OnInit {
   appIds:any;
   appData:any;
   appInfo :any;
+ 
+ 
   constructor(private http: HttpClient) { 
 
   }
 
   ngOnInit() {
+    
     this.data = {"email_id": sessionStorage.getItem("email_id")};
   
     this.http.post("http://"+this.publicIp+"/AppList",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
@@ -54,6 +57,14 @@ export class PersontrackingdetailsComponent implements OnInit {
       );
   
   }
+  edit(id){
+   console.log(id);
+
+  }
+  delete(id){
+    console.log(id);
+ 
+   }
  
 
 }

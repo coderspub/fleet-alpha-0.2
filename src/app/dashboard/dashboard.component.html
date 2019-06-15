@@ -4,14 +4,14 @@
         <!-- Sidebar  -->
         <app-loader *ngIf="loader"></app-loader>
         <nav id="sidebar" class=" shadow ">
-
+        
             <ul class="list-unstyled components">
                 <li><a routerLink="/dashboard" ><i class="fas fa-home"></i> Home</a></li>
                 <li><a routerLink="/dashboard/persontracking" ><i class="fas fa-street-view"></i>People Tracking</a></li>
                 <li><a routerLink="/dashboard/profile" ><i class="fas fa-user"></i> Profile</a></li>
                 <li><a routerLink="/dashboard/support" ><i class="fas fa-hands-helping"></i>Support</a></li>
             </ul>
-
+     
         </nav>
 
         <!-- Page Content  -->
@@ -61,12 +61,12 @@
                 </div>
               </nav>
             <router-outlet></router-outlet>
-            <footer class="footer mt-auto py-3">
+            <!-- <footer class="footer mt-auto py-3">
                 <div class="container">
                   <span class="text-muted">&copy; xcompass 2019
                   </span>
                 </div>
-              </footer>
+              </footer> -->
         </div>
       
     </div>

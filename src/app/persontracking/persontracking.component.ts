@@ -11,11 +11,16 @@ data:any;
 publicIp:string  = "api.xcompass.ml";
 status : boolean = false;
 val:JSON;
+personStatus : boolean = false;
+spinner:boolean = true;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    console.log(this.spinner);
   }
   addapp(form:NgForm){
+    this.spinner = false;
     this.data = form.value;
     this.data.email_id = sessionStorage.getItem("email_id");
     // console.log(this.data);
@@ -24,10 +29,19 @@ val:JSON;
         d=>{
           console.log(d);
           this.val=d as JSON; 
+          if(this.val['status']){
+            this.personStatus=true;
+            this.spinner = true;
+            setTimeout(() => {
+              this.personStatus=false;
+            }, 3000);
+          
+          }
         },
         (error)=>(console.log(error))
       );
   }
   }
+ 
 
 }

@@ -2,7 +2,7 @@
     <app-persontrackingnav></app-persontrackingnav>
     <div class="row">
     <div class="col-12">
-        <table class="table table-striped text-center" >
+        <table class="table table-striped text-center bg-white rounded  shadow" >
             <thead>
               <tr>
                   <th scope="col">S.No.</th>
@@ -10,15 +10,18 @@
                 <th scope="col">Phone  Number</th>
                 <th scope="col">Designation</th>
                 <th scope="col">QR code</th>
+                <th scope="col">Controls</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let appDetail of appDetails; let i = index">
-                <td>{{ i+1 }}</td>
-                <td *ngFor="let details of appDetail" >{{ details }}</td>
+                <td class="align-middle">{{ i+1 }}</td>
+                <td *ngFor="let details of appDetail" class="align-middle">{{ details }}</td>
                 <!-- <td *ngFor="let k of appIds">{{ k }}</td> -->
-                <td>  <ngx-qrcode qrc-value = "{{ appId[i] }}" qrc-class = "aclass"qrc-errorCorrectionLevel = "L" ></ngx-qrcode></td>
+                <td class="align-middle">  <ngx-qrcode qrc-value = "{{ appId[i] }}" qrc-class = "aclass" qrc-errorCorrectionLevel = "L" ></ngx-qrcode></td>
+                <td class="align-middle"><button class="btn btn-warning"><i class="fas fa-user-edit" (click)="edit(appId[i])" data-toggle="modal" data-target="#editModal"></i></button> <button class="btn btn-danger"><i class="fas fa-user-slash" (click)="delete(appId[i])" data-toggle="modal" data-target="#deleteModal"></i></button></td>
               </tr>
+             
               
             </tbody>
           </table>
@@ -41,4 +44,44 @@
 
 
   </div>
+
+  
 </div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>

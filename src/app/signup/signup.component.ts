@@ -15,6 +15,7 @@ export class SignupComponent implements OnInit {
   publicIp:string  = "api.xcompass.ml";
   val:JSON;
   registered:boolean =false;
+  spinner:boolean = true;
   constructor(private router:Router,private http: HttpClient) { }
 
   ngOnInit() {
@@ -26,12 +27,14 @@ export class SignupComponent implements OnInit {
     
     console.log(form.value); //get full object
     console.log(form.value.otp); //get only email value
+  
     const data = { "email_id" : sessionStorage.getItem("email_id"),"otp":form.value.otp};
     this.http.post("http://"+this.publicIp+"/VerifyOTP",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
       d=>{
         console.log(d);
         this.val=d as JSON; 
         console.log(this.val);
+   
         if(this.val['status']){
           $('#exampleModal').modal('hide')
           this.router.navigate(['/register']);
@@ -68,12 +71,14 @@ export class SignupComponent implements OnInit {
 
   register(form:NgForm){
     const data = form.value;
+    this.spinner = false;
     console.log(data);
     sessionStorage.setItem("email_id",form.value.email_id);
     this.http.post("http://"+this.publicIp+"/SignUpOTP",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
       d=>{
         console.log(d);
         this.val=d as JSON; 
+        this.spinner = true;
         if(this.val['status']){
           $('#exampleModal').modal('show')
         }

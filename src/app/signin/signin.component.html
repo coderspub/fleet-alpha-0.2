@@ -38,6 +38,7 @@
                     <button class="btn btn-link forgot-password" (click)="forgotpass()">Forgot Password?</button>
                   </div>
                   <button type="submit" class="btn btn-primary signin-options" [disabled]="!f.valid">Sign in</button>
+                  <span class="spinner-border text-success align-middle" role="status" [hidden] = "spinner"></span>
                   <button  class="btn btn-primary signin-options" (click)="signoutRedirect()">Create an account</button>
             
                 </form>
