@@ -1,8 +1,9 @@
 <div class="container container-fluid">
     <app-persontrackingnav></app-persontrackingnav>
     <div class="row">
-    <div class="col-12">
-        <table class="table table-striped text-center bg-white rounded  shadow" >
+    <div class="col-12 ">
+      
+        <table class="table table-striped text-center bg-white rounded  shadow " >
             <thead>
               <tr>
                   <th scope="col">S.No.</th>
@@ -19,7 +20,7 @@
                 <td *ngFor="let details of appDetail" class="align-middle">{{ details }}</td>
                 <!-- <td *ngFor="let k of appIds">{{ k }}</td> -->
                 <td class="align-middle">  <ngx-qrcode qrc-value = "{{ appId[i] }}" qrc-class = "aclass" qrc-errorCorrectionLevel = "L" ></ngx-qrcode></td>
-                <td class="align-middle"><button class="btn btn-warning"><i class="fas fa-user-edit" (click)="edit(appId[i])" data-toggle="modal" data-target="#editModal"></i></button> <button class="btn btn-danger"><i class="fas fa-user-slash" (click)="delete(appId[i])" data-toggle="modal" data-target="#deleteModal"></i></button></td>
+                <td class="align-middle"><button class="btn btn-warning" (click)="edit(appId[i])"  data-toggle="modal" data-target="#editModal" ><i class="fas fa-user-edit" ></i></button> <button class="btn btn-danger" (click)="delete(appId[i])"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-user-slash"  ></i></button></td>
               </tr>
              
               
@@ -57,17 +58,43 @@
           </button>
         </div>
         <div class="modal-body">
+          <form (ngSubmit)="alter(g)" #g="ngForm">
+          <div class="form-group">
+            <label for="username">Employee Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="name" required  appAutofocus [ngModel]="name" name="employee_name" #emp_name="ngModel">
+          </div>
+          <div class="form-group">
+            <label for="username">Phonenumber</label>
+            <input type="text" class="form-control" id="name" aria-describedby="phonenumber" [ngModel]="phone" name="phonenumber" #phonenumber = "ngModel" required  >
+          </div>
+          <div class="form-group">
+            <label for="username">Designation</label>
+            <input type="text" class="form-control" id="name" aria-describedby="designation" [ngModel]="desig" name="designation" #designation = "ngModel" required >
+          </div>
+        
+          <!-- <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" ngModel name="passwrd" #passwrd="ngModel">
+          </div> -->
+          <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Register
+          </button> -->
+      
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" >
+                  Register
+                </button>
+            </div> 
           
+        </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+   
       </div>
     </div>
   </div>
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog" role ="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
@@ -76,11 +103,14 @@
             </button>
           </div>
           <div class="modal-body">
-            
+          
+            <h3><span class="badge badge-danger">Warning!</span></h3>
+        
+            <h5>This action cannot be undone</h5>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-danger" (click) ="remove()">Delete</button>
           </div>
         </div>
       </div>
