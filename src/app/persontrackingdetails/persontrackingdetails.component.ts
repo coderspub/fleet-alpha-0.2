@@ -3,6 +3,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 declare var $: any;
 @Component({
   selector: 'app-persontrackingdetails',
@@ -25,8 +26,9 @@ export class PersontrackingdetailsComponent implements OnInit {
  phone:string;
  app:string;
  deleteapp:string = "";
+ mapApp:any;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient,private router : Router) { 
 
   }
 
@@ -130,6 +132,12 @@ export class PersontrackingdetailsComponent implements OnInit {
       (error)=>(console.log(error))
     );
   
+  }
+  track(id){
+    this.mapApp =JSON.parse(id);
+    sessionStorage.setItem("appid",this.mapApp['appid']);
+    console.log(this.mapApp);
+    this.router.navigate(['dashboard/maps']);
   }
  
 

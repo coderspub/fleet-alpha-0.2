@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class MapsComponent implements OnInit, OnDestroy {
    deviceId:string;
+   data:any;
    map: any;
    a_id:string;
    c_id:string;
@@ -23,22 +24,44 @@ export class MapsComponent implements OnInit, OnDestroy {
    mylat:number = 13.0827;
    publicIp:string  = "api.xcompass.ml";
    showSpinner:boolean=true;
+   personName : string;
+   designation : string;
    @ViewChild('map') mapContainer: ElementRef;
  
   constructor(private fleetMap:FleetMapService,private http: HttpClient,private spinner: NgxSpinnerService,private router : Router) { 
     this.refresher= setInterval(()=>{
       this.addmarker();
-      },200);
+      },5000);
   }
 
   ngOnInit() {
-    this.a_id = this.fleetMap.retriveAppId();
-    this.c_id=this.fleetMap.retriveCustomerId();
+    // this.a_id = this.fleetMap.retriveAppId();
+    // this.c_id=this.fleetMap.retriveCustomerId();
+  // this.fleetMap.retriveUserDetails();
+
+
+    this.firsthit();
   
     this.loadmap();
     // this.getdata();
   
    
+  }
+  firsthit(){
+this.data = { "email_id" :sessionStorage.getItem("email_id"),"appid":sessionStorage.getItem("appid") }
+    this.http.post("http://"+this.publicIp+"/AppDetail",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
+      d=>{
+        
+        this.val=d as JSON; 
+        if(this.val['status']){
+        console.log(this.val);
+        this.personName = this.val['appdetail'][0];
+        this.designation = this.val['appdetail'][2];
+        }
+   
+      },
+      (error)=>(console.log(error))
+    );
   }
   ngOnDestroy() {
     clearInterval(this.refresher);
@@ -94,11 +117,11 @@ export class MapsComponent implements OnInit, OnDestroy {
     
   }
   addmarker(){
-    console.log("adding marker");
+    // console.log("adding marker");
     // console.log(this.val);
     // leaflet.marker([this.lat,this.long]).addTo(this.map);
     // leaflet.marker.setLatLng([this.lat,this.long]);
-console.log(this.lat);
+// console.log(this.lat);
 this. mylat += 0.01;
 this.lat = this.mylat.toString();
 this.theMarker.remove();

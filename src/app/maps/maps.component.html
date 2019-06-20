@@ -1,6 +1,6 @@
         <div id="dashboarddata bg-light">
           <div class="container container-fluid">
-            <h1>Live Tracking |  {{ a_id }}</h1>
+            <h1>Live Tracking |  {{ personName }}</h1>
             <div class="row">
               <div class="col-9">
                 <div id="map"></div>
@@ -9,14 +9,14 @@
                 <div class="row">
                   <div class="col bg-white rounded shadow-sm mb1" id="details">
                     <h3>Person Name</h3>
-                    <h5>{{ a_id }}</h5>
+                    <h5>{{ personName }}</h5>
                     <button class="btn btn-primary" (click)="addmarker()">getdata</button>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col bg-white rounded shadow-sm mb1" id="details">
                     <h3>Designation</h3>
-                    <h5>100 Km/hr</h5>
+                    <h5>{{ designation }}</h5>
                   </div>
                 </div>
                 <div class="row">

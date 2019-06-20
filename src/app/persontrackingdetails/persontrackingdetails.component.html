@@ -20,7 +20,7 @@
                 <td *ngFor="let details of appDetail" class="align-middle">{{ details }}</td>
                 <!-- <td *ngFor="let k of appIds">{{ k }}</td> -->
                 <td class="align-middle">  <ngx-qrcode qrc-value = "{{ appId[i] }}" qrc-class = "aclass" qrc-errorCorrectionLevel = "L" ></ngx-qrcode></td>
-                <td class="align-middle"><button class="btn btn-warning" (click)="edit(appId[i])"  data-toggle="modal" data-target="#editModal" ><i class="fas fa-user-edit" ></i></button> <button class="btn btn-danger" (click)="delete(appId[i])"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-user-slash"  ></i></button></td>
+                <td class="align-middle"><button class="btn btn-success"  (click)="track(appId[i])"><i class="fas fa-map-marker-alt"></i></button><button class="btn btn-warning" (click)="edit(appId[i])"  data-toggle="modal" data-target="#editModal" ><i class="fas fa-user-edit" ></i></button> <button class="btn btn-danger" (click)="delete(appId[i])"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-user-slash"  ></i></button></td>
               </tr>
              
               
@@ -83,7 +83,7 @@
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary" >
-                  Register
+                  Submit
                 </button>
             </div> 
           
