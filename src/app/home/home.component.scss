@@ -3,51 +3,18 @@
     padding: 2em;
 }
 
-.device-2{
-    border-left: 10px solid #0FA275;
-}
-.device-3{
-    border-left: 10px solid #D55151;
-}
 
 .device-2{
   
     border-radius: 4px;
     border: 2px solid  #0FA275;
-    background: linear-gradient(45deg, #fff 50%,  #0FA275 50%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
+
+
   
-    color: #fff; /*For IE*/
+    color: #0FA275; /*For IE*/
   }
   
-  .device-2:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(45deg,  #0FA275 50%, transparent 50%);
-    z-index: -1;
-  }
-  
-  .device-2,
-  .device-2:after {
-    background-size: 300%;
-    background-position: 100%;
-    transition: 1s, font-size 0.2s;
-  }
-  
-  .device-2:hover,
-  .device-2:hover:after {
-    background-position: 0;
- 
-  
-    color:  #0FA275; /*For IE*/
-  }
+
   
 
 //devoice3
@@ -55,78 +22,25 @@
   
     border-radius: 4px;
     border: 2px solid  #D55151;
-    background: linear-gradient(45deg, #fff 50%,  #D55151 50%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
-  
-    color: #fff; /*For IE*/
-  }
-  
-  .device-3:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(45deg,  #D55151 50%, transparent 50%);
-    z-index: -1;
-  }
-  
-  .device-3,
-  .device-3:after {
-    background-size: 300%;
-    background-position: 100%;
-    transition: 1s, font-size 0.2s;
-  }
-  
-  .device-3:hover,
-  .device-3:hover:after {
-    background-position: 0;
  
+   
+
   
-    color:  #D55151; /*For IE*/
+    color: #D55151; /*For IE*/
   }
+  
+  
 
 
   .device-1{
   
     border-radius: 4px;
     border: 2px solid  rgb(145, 119, 35) ;
-    background: linear-gradient(45deg, #fff 50%,  rgb(145, 119, 35) 50%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
-  
-    color: #fff; /*For IE*/
-  }
-  
-  .device-1:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(45deg,  rgb(145, 119, 35)  50%, transparent 50%);
-    z-index: -1;
-  }
-  
-  .device-1,
-  .device-1:after {
-    background-size: 300%;
-    background-position: 100%;
-    transition: 1s, font-size 0.2s;
-  }
-  
-  .device-1:hover,
-  .device-1:hover:after {
-    background-position: 0;
  
+
   
-    color:  rgb(145, 119, 35) ; /*For IE*/
+    color: rgb(145, 119, 35); /*For IE*/
   }
+  
+
 

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
 
 #details{
   padding: 1em;
@@ -9,8 +10,11 @@
   background-color: #eae8eb;
 }
 app-loader{
-  z-index: 1000;
+  z-index: 5000;
 }
 .spinner-border{
   margin: 0em 1em 0em 1em;
+}
+app-loader2 {
+  z-index: 1000;
 }

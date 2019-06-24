@@ -1,9 +1,11 @@
-<div class="container container-fluid">
+
+<div class="container container-fluid scroll">
     <app-persontrackingnav></app-persontrackingnav>
-    <div class="row">
+    <div class="row ">
     <div class="col-12 ">
-      
-        <table class="table table-striped text-center bg-white rounded  shadow " >
+      <div class="scroller">
+        <app-adddevice *ngIf = "nodevice"></app-adddevice>
+        <table class="table table-striped text-center bg-white rounded  shadow " *ngIf = " hidetable?.val">
             <thead>
               <tr>
                   <th scope="col">S.No.</th>
@@ -14,18 +16,31 @@
                 <th scope="col">Controls</th>
               </tr>
             </thead>
+            
             <tbody>
-              <tr *ngFor="let appDetail of appDetails; let i = index">
+              <!-- <div class="loader d-flex justify-content-center">
+                <div> <app-loader2></app-loader2></div>
+               
+              </div> -->
+              <!-- <tr *ngFor="let appDetail of appDetails; let i = index">
                 <td class="align-middle">{{ i+1 }}</td>
-                <td *ngFor="let details of appDetail" class="align-middle">{{ details }}</td>
+                <td *ngFor="let details of appDetail" class="align-middle">{{ details }}</td> -->
                 <!-- <td *ngFor="let k of appIds">{{ k }}</td> -->
-                <td class="align-middle">  <ngx-qrcode qrc-value = "{{ appId[i] }}" qrc-class = "aclass" qrc-errorCorrectionLevel = "L" ></ngx-qrcode></td>
+                <!-- <td class="align-middle">  <ngx-qrcode qrc-value = "{{ appId[i] }}" qrc-class = "aclass" qrc-errorCorrectionLevel = "L" ></ngx-qrcode></td>
                 <td class="align-middle"><button class="btn btn-success"  (click)="track(appId[i])"><i class="fas fa-map-marker-alt"></i></button><button class="btn btn-warning" (click)="edit(appId[i])"  data-toggle="modal" data-target="#editModal" ><i class="fas fa-user-edit" ></i></button> <button class="btn btn-danger" (click)="delete(appId[i])"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-user-slash"  ></i></button></td>
               </tr>
-             
-              
+              -->
+              <tr *ngFor = "let j of appDetails; let i = index">
+                <td> {{ i+1 }}</td>
+                <td> {{ j.employee_name }}</td>
+                <td> {{ j.phonenumber }}</td>
+                <td> {{ j.designation }}</td>
+                <td> <ngx-qrcode qrc-value = "{{ qrcode[i] }}" qrc-class = "aclass" qrc-errorCorrectionLevel = "L" ></ngx-qrcode></td>
+                <td><button class="btn btn-success"  (click)="track(qrcode[i])"><i class="fas fa-map-marker-alt"></i></button><button class="btn btn-warning" (click)="edit(qrcode[i])"  data-toggle="modal" data-target="#editModal" ><i class="fas fa-user-edit" ></i></button> <button class="btn btn-danger" (click)="delete(qrcode[i])"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-user-slash"  ></i></button></td>
+              </tr>
             </tbody>
           </table>
+        </div>
     </div>
     <!-- <div class="col">
         <table class="table table-striped">

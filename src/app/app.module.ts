@@ -23,6 +23,10 @@ import { PersontrackingComponent } from './persontracking/persontracking.compone
 import { PersontrackingdetailsComponent } from './persontrackingdetails/persontrackingdetails.component';
 import { PersontrackingnavComponent } from './persontrackingnav/persontrackingnav.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { AdddeviceComponent } from './adddevice/adddevice.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { AppcalendarComponent } from './appcalendar/appcalendar.component'; // for FullCalendar!
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +46,9 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     PersontrackingComponent,
     PersontrackingdetailsComponent,
     PersontrackingnavComponent,
+    PagenotfoundComponent,
+    AdddeviceComponent,
+    AppcalendarComponent,
     
     
   ],
@@ -51,7 +58,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     AppRoutingModule,
     NgxSpinnerModule,
     FormsModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    FullCalendarModule // for FullCalendar!
   ],
   providers: [ { provide : LocationStrategy,useClass:HashLocationStrategy }],
   bootstrap: [AppComponent]

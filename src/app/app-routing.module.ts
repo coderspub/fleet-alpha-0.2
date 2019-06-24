@@ -11,8 +11,11 @@ import { SupportComponent } from './support/support.component';
 import { RegisterComponent } from './register/register.component';
 import { PersontrackingComponent } from './persontracking/persontracking.component';
 import { PersontrackingdetailsComponent } from './persontrackingdetails/persontrackingdetails.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { AppcalendarComponent } from './appcalendar/appcalendar.component';
 
 const routes: Routes = [
+  
   {path : "" , component:WelcomeComponent},
   {path : "signin" , component:SigninComponent},
   {path : "signup" , component:SignupComponent},
@@ -23,6 +26,7 @@ const routes: Routes = [
     {path : "maps" , component : MapsComponent},
     {path : "profile", component : ProfileComponent},
     {path:"support",component:SupportComponent},
+    {path:"calendar",component:AppcalendarComponent},
     {path:"persontracking",
     children : [
       {path : "" ,component:PersontrackingdetailsComponent },
@@ -30,9 +34,10 @@ const routes: Routes = [
     ]
   }
   ]
-  }
-
   
+  },
+
+  { path : "**" , component:PagenotfoundComponent},
 ];
 
 @NgModule({

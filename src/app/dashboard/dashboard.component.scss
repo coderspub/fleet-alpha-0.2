@@ -77,8 +77,8 @@ span {
     background-color: #01111f;
     color: #fff;
     transition: all 0.3s;
+ 
 }
-
 #sidebar.active {
     min-width: 80px;
     max-width: 80px;
@@ -271,4 +271,8 @@ a.article:hover {
   bottom: 0;
   width: 100%;
   text-align: center;
+}
+.sticky{
+    position: sticky;
+    top: 4em;
 }

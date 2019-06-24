@@ -1,26 +1,50 @@
 <div class="container container-fluid" id="main">
+    <ngx-spinner [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+        <p class="loading">Loading Awesomeness...</p>
+      </ngx-spinner>
     <h1>Profile</h1>
     <hr> 
-  <div class="row bg-white rounded shadow  " >
-    <div class="col-4 profileholder" >
+  <div class="bg-white rounded shadow  d-flex " >
+    <div class="" >
      
-        <div class="imgholder">
+        <div class="imgholder profileholder">
+           
             <img src="assets/images/avatar.jpg" alt="" class="img-fluid mx-auto d-block avatar rounded-circle ">
-            
+            <button class=" btn badge btn-success rounded-circle"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt"></i></button>
         </div>
     </div>
-    <div class="col profileholder d-flex align-items-center" >
+    <div class=" profileholder d-flex align-items-center" >
       <div >
-     
-        <h4 class="text-justify"><b>Username :</b> Jane Doe</h4>
-        <h4 class="text-justify"><b>Company :</b> Lorem Ipsum</h4>
-        <h4 class="text-justify"><b>Address :</b> Melano Park, California</h4>
-        <h4 class="text-justify"><b>Phone No. :</b> +1 12345 67890</h4>
-        <h4 class="text-justify"><b>Email :</b> loremipsum@email.com</h4>
-        <button class="btn btn-primary">change profile settings</button>
+        <h4 class="text-justify"><b>Email :</b> {{ this.data.email_id }}</h4>
+        <h4 class="text-justify"><b>Company :</b> {{ company_name }}</h4>
+        <h4 class="text-justify"><b>Address :</b> {{ address }}</h4>  
+        <h4 class="text-justify"><b>Country :</b> {{ country }}</h4>  
+        <h4 class="text-justify"><b>Zipcode :</b> {{ zipcode }}</h4>  
+        <h4 class="text-justify"><b>Phone No. :</b>{{ phonenumber }}</h4>
+        <!-- <button class=" btn badge1 btn-success rounded-circle"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt"></i></button> -->
       </div>
     </div>
     
 
   </div>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

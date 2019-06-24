@@ -4,6 +4,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var $: any;
 @Component({
   selector: 'app-persontrackingdetails',
@@ -25,65 +26,99 @@ export class PersontrackingdetailsComponent implements OnInit {
  desig:string;
  phone:string;
  app:string;
- deleteapp:string = "";
+ deleteapp:any;
  mapApp:any;
-
-  constructor(private http: HttpClient,private router : Router) { 
+loader:boolean = true;
+qrcode:any;
+nodevice:boolean =false;
+hidetable ={ "val" : null };
+  constructor(private http: HttpClient,private router : Router,private spinner: NgxSpinnerService) { 
 
   }
 
   ngOnInit() {
- 
-    this.firsthit();
-  
+    // setTimeout(() => {
+    //   this.loader=false;
+    // }, 4000);
+    this.spinner.show();
+    console.log("show")
+  this.firsthit();
   }
   firsthit(){
+   
     this.data = {"email_id": sessionStorage.getItem("email_id")};
   
     this.http.post("http://"+this.publicIp+"/AppList",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
         d=>{
       
           this.val=d as JSON; 
+          console.log(this.val);
           if(this.val['status'])
           {
       
-        
-            let i;
-            this.appDetails =[];
-            this.appId=[];
+            // this.spinner.hide();
+            // let i;
+            // this.appDetails =[];
+            // this.appId=[];
  
-            for(i in  this.val['applist']){
-              this.appData = this.val['applist'][i][3];
-              this. response  = { 'email_id' : sessionStorage.getItem("email_id"), 'appid' : this.appData}
+            // for(i in  this.val['applist']){
+            //   this.appData = this.val['applist'][i]['appid'];
+            //   this. response  = { 'email_id' : sessionStorage.getItem("email_id"), 'appid' : this.appData}
             
-              this.appInfo= JSON.stringify(this.response);
-              this.appId.push(this.appInfo);
-              this.appDetails.push(this.val['applist'][i].slice(0,3))
+            //   this.appInfo= JSON.stringify(this.response);
+            //   this.appId.push(this.appInfo);
+            //   this.appDetails.push(this.val['applist'][i].slice(0,3))
             
+            // }
+            this.appDetails = [];
+            this.qrcode =[];
+            // console.log(this.val['applist']);
+            let i ;
+            for (i in this.val['applist']){
+              // console.log(this.val['applist'][i]);
+              this.appDetails.push(this.val['applist'][i]);
+              let details =JSON.stringify({ "customerId" : sessionStorage.getItem("email_id"),"appId":this.val['applist'][i]['appid']});
+              this.qrcode.push(details);
             }
-            
-
-            
+          
+            // console.log(this.appDetails);
+            // console.log(this.qrcode);
+          
           }
         },
-        (error)=>(console.log(error))
+        
+        (error)=>(console.log(error)),
+        (()=>this.deviceCount())
       );
+     
 
+  }
+  deviceCount(){
+    console.log(this.qrcode.length)
+    if(this.qrcode.length != 0){
+      this.nodevice = false;
+      this.hidetable.val = true;
+    }
+    else{
+      this.nodevice = true;
+      this.hidetable.val = false;
+    }
+  
+    console.log("nodevice", this.nodevice);
   }
   edit(id){
 
-   const data =JSON.parse(id);
- 
-
+   let detail =JSON.parse(id);
+   let data = { "email_id" : sessionStorage.getItem("email_id"),"appid" : detail['appId']};
    this.http.post("http://"+this.publicIp+"/AppDetail",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
       d=>{
         
         this.val=d as JSON; 
         if(this.val['status']){
-          this.name = this.val['appdetail'][0];
-          this.phone= this.val['appdetail'][1];
-          this.desig = this.val['appdetail'][2];
-          this.app = this.val['appdetail'][3];
+          this.name = this.val['appdetail']['employee_name'];
+          this.phone= this.val['appdetail']['phonenumber'];
+          this.desig = this.val['appdetail']['designation'];
+          this.app = this.val['appdetail']['appid'];
         }
    
       },
@@ -92,9 +127,10 @@ export class PersontrackingdetailsComponent implements OnInit {
   
   }
   delete(id){
-    this.deleteapp =JSON.parse(id);
-    console.log(this.deleteapp);
-   
+    let detail =JSON.parse(id);
+    let data = { "email_id" : sessionStorage.getItem("email_id"),"appid" : detail['appId']};
+    console.log(data);
+   this.deleteapp = data;
    }
    remove(){
      const data = this.deleteapp;
@@ -107,6 +143,7 @@ export class PersontrackingdetailsComponent implements OnInit {
         console.log("removed");
         this.firsthit();
         $('#deleteModal').modal('hide')
+        this.firsthit();
         }
    
       },
@@ -138,6 +175,12 @@ export class PersontrackingdetailsComponent implements OnInit {
     sessionStorage.setItem("appid",this.mapApp['appid']);
     console.log(this.mapApp);
     this.router.navigate(['dashboard/maps']);
+  }
+  showSpinner() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 5000);
   }
  
 

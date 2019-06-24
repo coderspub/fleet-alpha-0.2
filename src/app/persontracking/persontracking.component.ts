@@ -23,7 +23,7 @@ spinner:boolean = true;
     this.spinner = false;
     this.data = form.value;
     this.data.email_id = sessionStorage.getItem("email_id");
-    // console.log(this.data);
+    console.log(this.data);
     if(form.valid){
       this.http.post("http://"+this.publicIp+"/AppReg",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
         d=>{

@@ -1,5 +1,5 @@
 .profileholder{
-    padding: 1em;
+    padding: 1em 2em 0em 2em;
     margin: 1em;
     z-index: 2;
 }
@@ -7,8 +7,18 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    display:inline-block;
 }
 .avatar{
 height: 15em;
 width:15em;
+}
+.badge{
+    position: relative;
+    padding:1.5em;
+    bottom:50px;
+    float: right;
+i{
+    font-size: 2em;
+}
 }
