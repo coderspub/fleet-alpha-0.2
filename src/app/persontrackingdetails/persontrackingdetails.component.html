@@ -36,7 +36,7 @@
                 <td> {{ j.phonenumber }}</td>
                 <td> {{ j.designation }}</td>
                 <td> <ngx-qrcode qrc-value = "{{ qrcode[i] }}" qrc-class = "aclass" qrc-errorCorrectionLevel = "L" ></ngx-qrcode></td>
-                <td><button class="btn btn-success"  (click)="track(qrcode[i])"><i class="fas fa-map-marker-alt"></i></button><button class="btn btn-warning" (click)="edit(qrcode[i])"  data-toggle="modal" data-target="#editModal" ><i class="fas fa-user-edit" ></i></button> <button class="btn btn-danger" (click)="delete(qrcode[i])"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-user-slash"  ></i></button></td>
+                <td><button class="btn btn-success"  data-placement="top" title="Track" (click)="track(qrcode[i])"><i class="fas fa-map-marker-alt"></i></button><button class="btn btn-warning" (click)="edit(qrcode[i])"  data-toggle="modal" data-target="#editModal" data-placement="top" title="Edit"><i class="fas fa-user-edit" ></i></button> <button class="btn btn-danger" (click)="delete(qrcode[i])"  data-toggle="modal" data-target="#deleteModal" data-placement="top" title="Delete"><i class="fas fa-user-slash"  ></i></button></td>
               </tr>
             </tbody>
           </table>

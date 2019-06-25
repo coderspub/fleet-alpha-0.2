@@ -1,12 +1,12 @@
-<div class="container container-fluid">
+<div class="container container-fluid ">
   <h1>Calendar</h1>
   <hr>
-    <div class='app-calendar' >
+    <div class='app-calendar bg-white rounded p-3 shadow' >
     <full-calendar defaultView="dayGridMonth"    #calendar    
     [header]="{
-      left: 'prev,next today',
+      left: 'prev,next',
       center: 'title',
-      right: 'dayGridMonth,dayGridYear'
+      right: 'today dayGridMonth,dayGridWeek,dayGridDay'
     }"
     [plugins]="calendarPlugins" [weekends]="calendarWeekends"></full-calendar>
 </div>
