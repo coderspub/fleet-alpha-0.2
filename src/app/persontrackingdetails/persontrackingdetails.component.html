@@ -1,6 +1,9 @@
 
 <div class="container container-fluid scroll">
-    <app-persontrackingnav></app-persontrackingnav>
+  <h1>Person Tracking</h1>
+  <hr>
+    <!-- <app-persontrackingnav></app-persontrackingnav> -->
+    <button class="btn btn-primary add-person" data-toggle="modal" data-target="#exampleModal">Add a person</button>
     <div class="row ">
     <div class="col-12 ">
       <div class="scroller">
@@ -130,3 +133,60 @@
         </div>
       </div>
     </div>
+
+    <div >
+      
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a person</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="formholder ">
+        
+              <div class="alert alert-success" role="alert" *ngIf="personStatus">
+                  New Person added successfully!
+              </div>
+            <form (ngSubmit) = "addapp(f)" #f="ngForm">
+              <div class="form-group" [class.was-validated]="employee_name.touched && !employee_name.valid">
+                <label for="emp_name">Employee Name</label>
+                <input type="text" class="form-control" id="emp_name" ngModel name="employee_name" #employee_name="ngModel" required>
+                <div class="invalid-feedback" *ngIf="employee_name.touched && !employee_name.valid">
+                    Employee name is required
+                  </div>
+              </div>
+              <div class="form-group" [class.was-validated]="phonenumber.touched && !phonenumber.valid">
+                <label for="phonenumber" >Phone Number</label>
+                <input type="text" class="form-control" id="phonenumber" ngModel name="phonenumber" #phonenumber="ngModel" required  pattern= "(7|8|9)\d{9}">
+                <div class="invalid-feedback" *ngIf="phonenumber.touched && !phonenumber.valid">
+                    Phonenumber is required
+                  </div>
+              </div>
+              <div class="form-group" [class.was-validated]="designation.touched && !designation.valid">
+                <label for="designation">Designation</label>
+                <input type="text" class="form-control" id="designation" ngModel name="designation" #designation="ngModel" required>
+                <div class="invalid-feedback" *ngIf="designation.touched && !designation.valid">
+                    Designation is required
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+                Add App
+                
+              </button>
+              <span class="spinner-border text-success align-middle" role="status" [hidden] = "spinner"></span>
+            </form>
+           
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+   

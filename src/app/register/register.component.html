@@ -3,7 +3,7 @@
   <div class="container-fluid container d-flex align-items-center register-holder">
     <div class="bg-white rounded register-content animated fadeIn">
         <div>
-            <h1 class="text-center">x-compass FMS</h1>
+          <img src="assets/images/xcompass.svg" alt="" class="img-fluid mx-auto d-block img-compass">
             <h5 class="text-center">Register</h5>
               <form (ngSubmit)="register(g)" #g="ngForm">
                   <div class="form-row">
@@ -31,8 +31,8 @@
                           </div>
                       </div>
                       <div class="form-group col" [class.was-validated]="country.touched && !country.valid ">
-                          <label for="address">Country</label>
-                          <select id="country" name="country" class="form-control"  ngModel name="country" #country="ngModel" required>
+                          <label for="country">Country</label>
+                          <select id="country" name="country" class="form-control"  ngModel name="country" #country="ngModel" required >
                               <option value="Afghanistan">Afghanistan</option>
                               <option value="Åland Islands">Åland Islands</option>
                               <option value="Albania">Albania</option>

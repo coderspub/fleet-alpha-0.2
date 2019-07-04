@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="210mm" height="297mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 21000 29700"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil1 {fill:#D9DADA}
+    .fil0 {fill:#EEEEEE}
+    .fil2 {fill:url(#id6)}
+   ]]>
+  </style>
+    <clipPath id="id0">
+     <path d="M8202 4381l13555 0 0 13554 -13555 0 0 -13554z"/>
+    </clipPath>
+   <mask id="id1">
+  <linearGradient id="id2" gradientUnits="userSpaceOnUse" x1="16062.3" y1="6827.3" x2="14096.5" y2="15223.3">
+   <stop offset="0" style="stop-opacity:1; stop-color:white"/>
+   <stop offset="1" style="stop-opacity:0; stop-color:white"/>
+  </linearGradient>
+    <rect style="fill:url(#id2)" x="8425" y="4371" width="13309" height="13309"/>
+   </mask>
+    <clipPath id="id3">
+     <path d="M2715 3700l11371 0 0 11370 -11371 0 0 -11370z"/>
+    </clipPath>
+    <clipPath id="id4">
+     <path d="M7017 -2771l11370 0 0 11371 -11370 0 0 -11371z"/>
+    </clipPath>
+    <clipPath id="id5">
+     <path d="M3951 451l15568 0 0 13568 -15568 0 0 -13568z"/>
+    </clipPath>
+  <linearGradient id="id6" gradientUnits="userSpaceOnUse" x1="16668.4" y1="-557.92" x2="7129.57" y2="14546.2">
+   <stop offset="0" style="stop-opacity:1; stop-color:#024D8A"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#00223D"/>
+  </linearGradient>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2731532284960">
+   <g style="clip-path:url(#id0)">
+    <image x="8202" y="4381" width="13555" height="13555" xlink:href="firstapp_Images\firstapp_ImgID1.png"/>
+   </g>
+  </g>
+  <path class="fil0" style="mask:url(#id1)" d="M15079 4381c3670,0 6645,2975 6645,6644 0,3670 -2975,6645 -6645,6645 -3669,0 -6644,-2975 -6644,-6645 0,-3669 2975,-6644 6644,-6644z"/>
+  <g id="_2731532283360">
+   <g style="clip-path:url(#id3)">
+    <image x="2715" y="3700" width="11371" height="11371" xlink:href="firstapp_Images\firstapp_ImgID2.png"/>
+   </g>
+  </g>
+  <circle class="fil1" cx="8294" cy="9274" r="5574"/>
+  <g id="_2731532282720">
+   <g style="clip-path:url(#id4)">
+    <image x="7017" y="-2771" width="11371" height="11371" xlink:href="firstapp_Images\firstapp_ImgID3.png"/>
+   </g>
+  </g>
+  <circle class="fil0" cx="12745" cy="2847" r="5574"/>
+  <g id="_2731532279744">
+   <g style="clip-path:url(#id5)">
+    <image x="3951" y="451" width="15568" height="13568" xlink:href="firstapp_Images\firstapp_ImgID4.png"/>
+   </g>
+  </g>
+  <path class="fil2" d="M17391 2788l-32 31 32 -31zm32 -32l-32 32 32 -32zm0 0l0 0zm-64 63c-71,108 -166,183 -262,278 -112,111 -161,195 -269,302l-858 856c-104,106 -157,191 -269,303 -391,386 -616,598 -969,999l-4220 4320c-550,657 -520,350 -518,911l0 2857c198,-46 995,-816 1184,-975 82,-68 109,-85 189,-160 61,-56 151,-124 215,-167l-640 -1935c175,114 2470,2448 2870,2848 112,112 286,349 436,389l3982 -9955c227,-566 437,-1091 662,-1655 96,-240 647,-1565 658,-1692l-8593 4106c-1233,617 -2586,1212 -3820,1831l-2889 1365c76,103 849,252 984,286l3811 952c153,-5 776,-536 938,-648l5519 -4069c134,-100 238,-176 367,-267 247,-173 480,-364 730,-540 123,-86 234,-175 363,-272 89,-67 312,-244 399,-268z"/>
+ </g>
+</svg>

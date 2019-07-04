@@ -26,7 +26,10 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AdddeviceComponent } from './adddevice/adddevice.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { AppcalendarComponent } from './appcalendar/appcalendar.component'; // for FullCalendar!
+import { AppcalendarComponent } from './appcalendar/appcalendar.component';
+import { ReportsComponent } from './reports/reports.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // for FullCalendar!
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +52,7 @@ import { AppcalendarComponent } from './appcalendar/appcalendar.component'; // f
     PagenotfoundComponent,
     AdddeviceComponent,
     AppcalendarComponent,
+    ReportsComponent,
     
     
   ],
@@ -59,7 +63,9 @@ import { AppcalendarComponent } from './appcalendar/appcalendar.component'; // f
     NgxSpinnerModule,
     FormsModule,
     NgxQRCodeModule,
-    FullCalendarModule // for FullCalendar!
+    FullCalendarModule,
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule // for FullCalendar!
   ],
   providers: [ { provide : LocationStrategy,useClass:HashLocationStrategy }],
   bootstrap: [AppComponent]

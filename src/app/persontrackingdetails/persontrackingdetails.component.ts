@@ -32,7 +32,9 @@ loader:boolean = true;
 qrcode:any;
 nodevice:boolean =false;
 hidetable ={ "val" : null };
-  constructor(private http: HttpClient,private router : Router,private spinner: NgxSpinnerService) { 
+personStatus : boolean = false;
+spinner:boolean = true;
+  constructor(private http: HttpClient,private router : Router) { 
 
   }
 
@@ -40,7 +42,7 @@ hidetable ={ "val" : null };
     // setTimeout(() => {
     //   this.loader=false;
     // }, 4000);
-    this.spinner.show();
+    // this.spinner.show();
     console.log("show")
   this.firsthit();
   }
@@ -176,12 +178,37 @@ hidetable ={ "val" : null };
     console.log(this.mapApp);
     this.router.navigate(['dashboard/maps']);
   }
-  showSpinner() {
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 5000);
+  // showSpinner() {
+  //   this.spinner.show();
+  //   setTimeout(() => {
+  //     this.spinner.hide();
+  //   }, 5000);
+  // }
+  addapp(form:NgForm){
+    this.spinner = false;
+    this.data = form.value;
+    this.data.email_id = sessionStorage.getItem("email_id");
+    // console.log(this.data);
+    if(form.valid){
+      this.http.post("http://"+this.publicIp+"/AppReg",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
+        d=>{
+          // console.log(d);
+          this.val=d as JSON; 
+          if(this.val['status']){
+            
+            this.personStatus=true;
+            this.spinner = true;
+            this.firsthit();
+            setTimeout(() => {
+              this.personStatus=false;
+              $("#exampleModal").modal("hide");
+            }, 3000);
+            
+          }
+        },
+        (error)=>(console.log(error))
+      );
   }
- 
+  }
 
 }

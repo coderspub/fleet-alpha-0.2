@@ -13,6 +13,7 @@ import { PersontrackingComponent } from './persontracking/persontracking.compone
 import { PersontrackingdetailsComponent } from './persontrackingdetails/persontrackingdetails.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AppcalendarComponent } from './appcalendar/appcalendar.component';
+import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
   
@@ -27,6 +28,7 @@ const routes: Routes = [
     {path : "profile", component : ProfileComponent},
     {path:"support",component:SupportComponent},
     {path:"calendar",component:AppcalendarComponent},
+    {path:"reports",component:ReportsComponent},
     {path:"persontracking",
     children : [
       {path : "" ,component:PersontrackingdetailsComponent },

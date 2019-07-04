@@ -29,6 +29,7 @@
     "jquery": "^3.4.0",
     "leaflet": "^1.4.0",
     "leaflet-routing-machine": "^3.2.12",
+    "ngx-bootstrap": "^5.0.0",
     "ngx-qrcode2": "0.0.9",
     "ngx-spinner": "^7.1.4",
     "particles.js": "^2.0.0",
