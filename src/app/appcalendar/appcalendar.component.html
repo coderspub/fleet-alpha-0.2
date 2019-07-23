@@ -1,13 +1,13 @@
 <div class="container container-fluid ">
-  <h1>Calendar</h1>
+  <h1><i class="far fa-calendar-alt dashi"></i>Calendar</h1>
   <hr>
-    <div class='app-calendar bg-white rounded p-3 shadow' >
-    <full-calendar defaultView="dayGridMonth"    #calendar    
+    <div class='app-calendar bg-white rounded p-3 card-1' >
+    <full-calendar class = "card-6" defaultView="dayGridMonth"    #calendar    
     [header]="{
       left: 'prev,next',
       center: 'title',
       right: 'today dayGridMonth,dayGridWeek,dayGridDay'
     }"
-    [plugins]="calendarPlugins" [weekends]="calendarWeekends"></full-calendar>
+    [plugins]="calendarPlugins" [weekends]="calendarWeekends" [height]="calenderHeight"></full-calendar>
 </div>
 </div>

@@ -1,16 +1,17 @@
         <div id="dashboarddata bg-light">
           <div class="container container-fluid">
-            <h1>Live Tracking |  {{ personName }}</h1>
+            <h1><i class="fas fa-map-marker-alt dashi"></i>Live Tracking |  {{ personName }}</h1>
+            <hr>
             <div class="row">
               <div class="col-9">
-                <div id="map"></div>
+                <div id="map" class="bg-white rounded shadow-sm p-1"></div>
               </div>
               <div class="col-3">
                 <div class="row">
                   <div class="col bg-white rounded shadow-sm mb1" id="details">
                     <h3>Person Name</h3>
                     <h5>{{ personName }}</h5>
-                    <button class="btn btn-primary" (click)="addmarker()">getdata</button>
+                    <!-- <button class="btn btn-primary" (click)="getdata()">getdata</button> -->
                   </div>
                 </div>
                 <div class="row">
@@ -25,6 +26,18 @@
                     <h5>TN-AZ-666</h5>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col bg-white rounded shadow-sm mb1" id="details">
+                    <h3>Speed</h3>
+                    <h5>{{ speed }} km/hr</h5>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col bg-white rounded shadow-sm mb1" id="details">
+                      <h3>Time</h3>
+                      <h5>{{ appTime }} </h5>
+                    </div>
+                  </div>
               </div>
             </div>
           </div>

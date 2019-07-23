@@ -1,5 +1,7 @@
 table{
+    width:100%;
     padding:0px;
+    
     margin: 0.5em 0em 5em 0em;
 
 }
@@ -7,12 +9,13 @@ table{
     padding:0px;
     margin: 0px;
 }
-i{
+.fasi{
     font-size: 1em;
     margin: 0.5em;
 }
 td{
     .btn{
+        width : 3em;
         margin: 0.5em;
         padding: 0;
     }

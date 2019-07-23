@@ -1,14 +1,14 @@
 
 <div class="container container-fluid scroll">
-  <h1>Person Tracking</h1>
+  <h1><i class="fas fa-street-view dashi"></i>Person Tracking</h1>
   <hr>
     <!-- <app-persontrackingnav></app-persontrackingnav> -->
-    <button class="btn btn-primary add-person" data-toggle="modal" data-target="#exampleModal">Add a person</button>
+    <button class="btn btn-primary add-person card-6" data-toggle="modal" data-target="#exampleModal">Add a person</button>
     <div class="row ">
     <div class="col-12 ">
       <div class="scroller">
         <app-adddevice *ngIf = "nodevice"></app-adddevice>
-        <table class="table table-striped text-center bg-white rounded  shadow " *ngIf = " hidetable?.val">
+        <table class="table table-striped text-center bg-white rounded  card-1" *ngIf = " hidetable?.val">
             <thead>
               <tr>
                   <th scope="col">S.No.</th>
@@ -39,7 +39,7 @@
                 <td> {{ j.phonenumber }}</td>
                 <td> {{ j.designation }}</td>
                 <td> <ngx-qrcode qrc-value = "{{ qrcode[i] }}" qrc-class = "aclass" qrc-errorCorrectionLevel = "L" ></ngx-qrcode></td>
-                <td><button class="btn btn-success"  data-placement="top" title="Track" (click)="track(qrcode[i])"><i class="fas fa-map-marker-alt"></i></button><button class="btn btn-warning" (click)="edit(qrcode[i])"  data-toggle="modal" data-target="#editModal" data-placement="top" title="Edit"><i class="fas fa-user-edit" ></i></button> <button class="btn btn-danger" (click)="delete(qrcode[i])"  data-toggle="modal" data-target="#deleteModal" data-placement="top" title="Delete"><i class="fas fa-user-slash"  ></i></button></td>
+                <td><button class="btn btn-success card-6"  data-placement="top" title="Track" (click)="track(qrcode[i])"><i class="fas fa-map-marker-alt fasi"></i></button><button class="btn btn-warning card-6" (click)="edit(qrcode[i])"  data-toggle="modal" data-target="#editModal" data-placement="top" title="Edit"><i class="fas fa-user-edit fasi" ></i></button> <button class="btn btn-danger card-6" (click)="delete(qrcode[i])"  data-toggle="modal" data-target="#deleteModal" data-placement="top" title="Delete"><i class="fas fa-user-slash fasi"  ></i></button></td>
               </tr>
             </tbody>
           </table>

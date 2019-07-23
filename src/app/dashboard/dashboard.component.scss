@@ -40,7 +40,7 @@ a:focus {
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+   
 }
 
 .navbar-btn {
@@ -74,7 +74,7 @@ span {
     padding-top:4em;
     min-width: 250px;
     max-width: 250px;
-    background-color: #01111f;
+    background: linear-gradient(180deg, rgba(2,32,62,1) 0%, rgba(4,93,181,1) 100%);
     color: #fff;
     transition: all 0.3s;
  
@@ -147,7 +147,7 @@ span {
 
 #sidebar ul li a:hover {
     color: #00223d;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.849);
 }
 
 #sidebar ul li a i {
@@ -275,4 +275,7 @@ a.article:hover {
 .sticky{
     position: sticky;
     top: 4em;
+}
+.clock{
+    cursor: pointer;
 }

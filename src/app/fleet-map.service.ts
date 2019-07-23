@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class FleetMapService {
 data:any;
-publicIp:string  = "api.xcompass.ml";
+publicIp: string = "35.244.17.132:8080";
 val:JSON;
   constructor(private http: HttpClient) { }
   retriveUserDetails(){

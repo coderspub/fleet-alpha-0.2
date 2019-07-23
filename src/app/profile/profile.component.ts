@@ -1,37 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { ServerService } from "../server.service";
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  data:any;
-  publicIp:string  = "api.xcompass.ml";
-  val:JSON;
   address:string;
   company_name : string;
   zipcode : string;
   country: string;
   phonenumber : string;
+  email_id : string;
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private server : ServerService) { }
  
   ngOnInit() {
-    this.data = { "email_id" : sessionStorage.getItem("email_id")};
-    this.http.post("http://"+this.publicIp+"/UserDetail",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
-      d=>{ 
-        this.val=d as JSON; 
-        console.log(this.val);
-        this.address = this.val['userdetail']['address'];
-        this.company_name = this.val['userdetail']['company_name'];
-        this.zipcode= this.val['userdetail']['zipcode'];
-        this.country = this.val['userdetail']['country'];
-        this.phonenumber = this.val['userdetail']['phonenumber'];
-      },
-      (error)=>(console.log(error))
-    );
-   
-  }
+
+    this.server.onProfileLoad().subscribe((res)=>{
+      console.log(res);
+      if(res['status']){
+        this.address = res['userdetail']['address'];
+        this.company_name = res['userdetail']['company_name'];
+        this.zipcode= res['userdetail']['zipcode'];
+        this.country = res['userdetail']['country'];
+        this.phonenumber = res['userdetail']['phonenumber'];
+        this.email_id = localStorage.getItem("email_id");
+       
+      }
+    },(error)=>{
+      console.log(error);
+    });
+
+   }
+
+
+
 
 }

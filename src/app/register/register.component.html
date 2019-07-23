@@ -1,11 +1,11 @@
 
 <div class="register-bg ">
-  <div class="container-fluid container d-flex align-items-center register-holder">
-    <div class="bg-white rounded register-content animated fadeIn">
+  <div class="container-fluid container d-flex align-items-center register-holder ">
+    <div class="bg-white rounded register-content animated fadeIn card-5">
         <div>
           <img src="assets/images/xcompass.svg" alt="" class="img-fluid mx-auto d-block img-compass">
             <h5 class="text-center">Register</h5>
-              <form (ngSubmit)="register(g)" #g="ngForm">
+              <form (ngSubmit)="userRegister(g)" #g="ngForm">
                   <div class="form-row">
                       <div class="form-group col-md-6" [class.was-validated]="company_name.touched && !company_name.valid">
                         <label for="companyname">Company Name</label>
@@ -345,4 +345,4 @@
   </div>
   </div>
   </div>
-  <app-loader2 *ngIf="loader"></app-loader2>
+ 

@@ -22,20 +22,7 @@ export class DashboardComponent implements OnInit {
       this.time = new Date();
     }, 1000);
   }
-//   toggle(){
-// if(this.toggler ==true){
-//   document.getElementById("sidebar-wrapper").style.width = "250px";
-//   document.getElementById("page-content-wrapper").style.paddingLeft = "250px";
-//   this.toggler = false;
-//   console.log(this.toggler);
-// }
-// else{
-//   document.getElementById("sidebar-wrapper").style.width = "0px";
-//   document.getElementById("page-content-wrapper").style.paddingLeft = "0px";
-//   this.toggler =true;
-//   console.log(this.toggler);
-// }
-//   }
+
 toggle(){
   $('#sidebar').toggleClass('active');
 }
@@ -43,12 +30,15 @@ toggle(){
     document.getElementById("sidebar-wrapper").style.width = "0px";
     document.getElementById("page-content-wrapper").style.paddingLeft = "0px";
   }
-settings(){
-  console.log("settings");
+
+redirectToCalendar(){
+  this.router.navigate(['/dashboard/calendar']);
 }
   signout(){
-    console.log("signout");
+  
     this.router.navigate(['/']);
+    localStorage.clear();
+    sessionStorage.clear();
   }
   ngOnDestroy(){
     clearInterval(this.timer);

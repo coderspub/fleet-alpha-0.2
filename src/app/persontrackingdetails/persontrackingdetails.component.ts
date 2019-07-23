@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import { QRCodeModule } from 'angularx-qrcode';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { Component, OnInit} from '@angular/core';
+import { ServerService } from "../server.service";
+import { HttpClient } from '@angular/common/http';
+
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
+
 declare var $: any;
 @Component({
   selector: 'app-persontrackingdetails',
@@ -12,10 +12,7 @@ declare var $: any;
   styleUrls: ['./persontrackingdetails.component.scss']
 })
 export class PersontrackingdetailsComponent implements OnInit {
-  response:any;
   data:any;
-  publicIp:string  = "api.xcompass.ml";
-  val:JSON;
   appDetails:any;
   appId:any;
   appIds:any;
@@ -34,69 +31,35 @@ nodevice:boolean =false;
 hidetable ={ "val" : null };
 personStatus : boolean = false;
 spinner:boolean = true;
-  constructor(private http: HttpClient,private router : Router) { 
+  constructor(private http: HttpClient,private router : Router,private server : ServerService) { 
 
   }
 
   ngOnInit() {
-    // setTimeout(() => {
-    //   this.loader=false;
-    // }, 4000);
-    // this.spinner.show();
-    console.log("show")
-  this.firsthit();
+  this.onPersonTrackingLoad();
   }
-  firsthit(){
-   
-    this.data = {"email_id": sessionStorage.getItem("email_id")};
-  
-    this.http.post("http://"+this.publicIp+"/AppList",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
-        d=>{
-      
-          this.val=d as JSON; 
-          console.log(this.val);
-          if(this.val['status'])
-          {
-      
-            // this.spinner.hide();
-            // let i;
-            // this.appDetails =[];
-            // this.appId=[];
- 
-            // for(i in  this.val['applist']){
-            //   this.appData = this.val['applist'][i]['appid'];
-            //   this. response  = { 'email_id' : sessionStorage.getItem("email_id"), 'appid' : this.appData}
-            
-            //   this.appInfo= JSON.stringify(this.response);
-            //   this.appId.push(this.appInfo);
-            //   this.appDetails.push(this.val['applist'][i].slice(0,3))
-            
-            // }
-            this.appDetails = [];
-            this.qrcode =[];
-            // console.log(this.val['applist']);
-            let i ;
-            for (i in this.val['applist']){
-              // console.log(this.val['applist'][i]);
-              this.appDetails.push(this.val['applist'][i]);
-              let details =JSON.stringify({ "customerId" : sessionStorage.getItem("email_id"),"appId":this.val['applist'][i]['appid']});
-              this.qrcode.push(details);
-            }
-          
-            // console.log(this.appDetails);
-            // console.log(this.qrcode);
-          
-          }
-        },
-        
-        (error)=>(console.log(error)),
-        (()=>this.deviceCount())
-      );
-     
+  onPersonTrackingLoad(){
+    this.server.onPersonTrackingLoad().subscribe((res)=>{
+      if(res['status']){
+        this.appDetails = [];
+        this.qrcode =[];
 
+        let i ;
+        for (i in res['applist']){
+
+          this.appDetails.push(res['applist'][i]);
+          let details =JSON.stringify({ "customerId" : sessionStorage.getItem("email_id"),"appId":res['applist'][i]['appid']});
+          this.qrcode.push(details);
+        }
+      }
+    },(error)=>{
+      console.log(error);
+    },()=>this.deviceCount())
   }
+  
+  
   deviceCount(){
-    console.log(this.qrcode.length)
+
     if(this.qrcode.length != 0){
       this.nodevice = false;
       this.hidetable.val = true;
@@ -106,76 +69,60 @@ spinner:boolean = true;
       this.hidetable.val = false;
     }
   
-    console.log("nodevice", this.nodevice);
+ 
   }
   edit(id){
+    let detail =JSON.parse(id);
+    sessionStorage.setItem("appid" ,  detail['appId']);
+    let data = { "appid" : sessionStorage.getItem("appId")};
+    this.server.getAppDetailsOnLoad(data).subscribe((res)=>{
+      if(res['status']){
+        this.name = res['appdetail']['employee_name'];
+        this.phone= res['appdetail']['phonenumber'];
+        this.desig = res['appdetail']['designation'];
+        this.app = res['appdetail']['appid'];
+ 
+      }
 
-   let detail =JSON.parse(id);
-   let data = { "email_id" : sessionStorage.getItem("email_id"),"appid" : detail['appId']};
-   this.http.post("http://"+this.publicIp+"/AppDetail",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
-      d=>{
-        
-        this.val=d as JSON; 
-        if(this.val['status']){
-          this.name = this.val['appdetail']['employee_name'];
-          this.phone= this.val['appdetail']['phonenumber'];
-          this.desig = this.val['appdetail']['designation'];
-          this.app = this.val['appdetail']['appid'];
-        }
-   
-      },
-      (error)=>(console.log(error))
-    );
-  
+    },(error)=>{
+      console.log(error);
+    })
+  }
+  alter(form:NgForm){
+   let  data = form.value;
+   data['appid'] = sessionStorage.getItem("appid");
+    this.server.alterPersonTracking(data).subscribe((res)=>{
+      if(res['status']){
+        this.onPersonTrackingLoad();
+        $('#editModal').modal('hide')
+      }
+
+    },(error)=>{
+      console.log(error);
+    })
+
   }
   delete(id){
     let detail =JSON.parse(id);
-    let data = { "email_id" : sessionStorage.getItem("email_id"),"appid" : detail['appId']};
+    sessionStorage.setItem("appid" ,  detail['appId']);
+   }
+  remove(){
+    const data = {"appid" : sessionStorage.getItem("appid")};
     console.log(data);
-   this.deleteapp = data;
-   }
-   remove(){
-     const data = this.deleteapp;
-    this.http.post("http://"+this.publicIp+"/AppRemove",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
-      d=>{
-        
-        this.val=d as JSON; 
-        console.log(this.val['status']);
-        if(this.val['status']){
-        console.log("removed");
-        this.firsthit();
+    this.server.deletePersonTracking(data).subscribe((res)=>{
+      if(res['status']){
         $('#deleteModal').modal('hide')
-        this.firsthit();
+        this.onPersonTrackingLoad();
         }
-   
-      },
-      (error)=>(console.log(error))
-    );
-   }
-   alter(form:NgForm){
-     this.data = form.value;
-  
-     this.data.email_id=sessionStorage.getItem("email_id");
-     this.data.appid =this.app;
-     console.log(this.data);
-     this.http.post("http://"+this.publicIp+"/AppEdit",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
-      d=>{
-        
-        this.val=d as JSON; 
-        if(this.val['status']){
-          this.firsthit();
-          $('#editModal').modal('hide')
-        }
-   
-      },
-      (error)=>(console.log(error))
-    );
-  
+
+    },(error)=>{
+      console.log(error);
+    })
   }
+
   track(id){
     this.mapApp =JSON.parse(id);
-    sessionStorage.setItem("appid",this.mapApp['appid']);
-    console.log(this.mapApp);
+     sessionStorage.setItem("appId",this.mapApp['appId']);
     this.router.navigate(['dashboard/maps']);
   }
   // showSpinner() {
@@ -184,31 +131,22 @@ spinner:boolean = true;
   //     this.spinner.hide();
   //   }, 5000);
   // }
+ 
   addapp(form:NgForm){
-    this.spinner = false;
-    this.data = form.value;
-    this.data.email_id = sessionStorage.getItem("email_id");
-    // console.log(this.data);
     if(form.valid){
-      this.http.post("http://"+this.publicIp+"/AppReg",this.data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
-        d=>{
-          // console.log(d);
-          this.val=d as JSON; 
-          if(this.val['status']){
-            
-            this.personStatus=true;
-            this.spinner = true;
-            this.firsthit();
-            setTimeout(() => {
-              this.personStatus=false;
-              $("#exampleModal").modal("hide");
-            }, 3000);
-            
-          }
-        },
-        (error)=>(console.log(error))
-      );
-  }
+      this.server.addPersonTracking(form.value).subscribe((res)=>{
+        if(res['status']){
+          this.onPersonTrackingLoad();
+          setTimeout(() => {
+            this.personStatus=false;
+            $("#exampleModal").modal("hide");
+          }, 3000);
+        }
+      },(error)=>{
+        console.log(error);
+      });
+    }
+
   }
 
 }

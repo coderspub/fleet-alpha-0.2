@@ -9,12 +9,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SupportComponent } from './support/support.component';
 import { RegisterComponent } from './register/register.component';
-import { PersontrackingComponent } from './persontracking/persontracking.component';
+
 import { PersontrackingdetailsComponent } from './persontrackingdetails/persontrackingdetails.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+
 import { AppcalendarComponent } from './appcalendar/appcalendar.component';
 import { ReportsComponent } from './reports/reports.component';
-
+import { AuthGuard } from './auth.guard';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 const routes: Routes = [
   
   {path : "" , component:WelcomeComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path : "signup" , component:SignupComponent},
   {path : "register" , component:RegisterComponent},
   {path: "dashboard" , component:DashboardComponent,
+  canActivateChild : [AuthGuard],
   children : [
     {path : "",component : HomeComponent},
     {path : "maps" , component : MapsComponent},
@@ -29,12 +31,7 @@ const routes: Routes = [
     {path:"support",component:SupportComponent},
     {path:"calendar",component:AppcalendarComponent},
     {path:"reports",component:ReportsComponent},
-    {path:"persontracking",
-    children : [
-      {path : "" ,component:PersontrackingdetailsComponent },
-      {path:"persontrackingdetails", component:PersontrackingComponent},
-    ]
-  }
+    {path:"persontracking",component:PersontrackingdetailsComponent }
   ]
   
   },

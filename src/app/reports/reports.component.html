@@ -1,5 +1,5 @@
 <div class="container container-fluid">
-  <h1>Reports</h1>
+  <h1><i class="fas fa-chart-bar dashi"></i>Reports</h1>
   <hr>
   <!-- <div class="bg-white rounded p-3 shadow">
     <form class="form-inline" (ngSubmit)="generateReport(g)" #g="ngForm">
@@ -27,28 +27,49 @@
           
     </form>
   </div> -->
-  <div class="bg-white rounded p-3 shadow">
-  <form class="form-inline" (ngSubmit)="generateReport(g)" #g="ngForm">
-      <div class="form-group mb-2">
+  <div class="bg-white rounded p-3 card-1 ">
+    <!-- <div class="report-header">
+  <form class="form" (ngSubmit)="generateReport(g)" #g="ngForm">
+      <div class="form-col mb-2">
         <label for="deviceid" class="sr-only">Email</label>
         <select id="deviceid" class="form-control" ngModel name="deviceId" #deviceId="ngModel">
             <option>Device1</option>
              <option>Device1</option>
           </select>
       </div>
-      <div class="form-group mx-sm-3 mb-2">
+      <div class="form-col mx-sm-3 mb-2">
           <input type="text"
           placeholder="From"
           class="form-control"
-          bsDatepicker ngModel name="fromDate" #fromDate="ngModel">
+          bsDatepicker ngModel name="fromDate" #fromDate="ngModel7">
       </div>
-      <div class="form-group mx-sm-3 mb-2">
+      <div class="form-col mx-sm-3 mb-2">
           <input type="text"
           placeholder="To"
           class="form-control"
           bsDatepicker ngModel name="toDate" #toDate="ngModel">
       </div>
       <button type="submit" class="btn btn-primary mb-2">Generate Report</button>
+    </form>
+  </div> -->
+  <form (ngSubmit)="generateReport(g)" #g="ngForm">
+      <div class="row">
+        <div class="col">
+            <select id="deviceid" class="form-control" ngModel name="deviceId" #deviceId="ngModel">
+                <option>Device1</option>
+                 <option>Device1</option>
+              </select>
+        </div>
+        <div class="col">
+            <input type="text"
+            placeholder="To"
+            class="form-control"
+            bsDatepicker ngModel name="toDate" #toDate="ngModel">
+        </div>
+        <div class="col">
+            <button type="submit" class="form-control btn btn-primary">Generate Report</button>
+        </div>
+      </div>
     </form>
     <div id="map"></div>
     </div>

@@ -8,9 +8,10 @@ import {
 import leaflet from "leaflet";
 import "leaflet-routing-machine";
 import { FleetMapService } from "../fleet-map.service";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from "@angular/router";
+import { ServerService } from "../server.service";
 @Component({
   selector: "app-maps",
   templateUrl: "./maps.component.html",
@@ -28,102 +29,66 @@ export class MapsComponent implements OnInit, OnDestroy {
   lat: string = "13.0827";
   long: string = "80.2707";
   mylat: number = 13.0827;
-  publicIp: string = "api.xcompass.ml";
   showSpinner: boolean = true;
   personName: string;
   designation: string;
+  speed:string;
+  appTime : string;
   @ViewChild("map") mapContainer: ElementRef;
 
   constructor(
     private fleetMap: FleetMapService,
     private http: HttpClient,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private server : ServerService
   ) {
     this.refresher = setInterval(() => {
-      this.addmarker();
+      this.getdata();
     }, 5000);
   }
 
   ngOnInit() {
-    // this.a_id = this.fleetMap.retriveAppId();
-    // this.c_id=this.fleetMap.retriveCustomerId();
-    // this.fleetMap.retriveUserDetails();
-
-    this.firsthit();
-
-    this.loadmap();
+ this.getAppDetailsOnLoad();
+  this.loadmap();
     // this.getdata();
   }
-  firsthit() {
-    this.data = {
-      email_id: sessionStorage.getItem("email_id"),
-      appid: sessionStorage.getItem("appid")
-    };
-    this.http
-      .post("http://" + this.publicIp + "/AppDetail", this.data, {
-        headers: new HttpHeaders().set("Content-type", "application/json")
-      })
-      .subscribe(
-        d => {
-          this.val = d as JSON;
-          if (this.val["status"]) {
-            console.log(this.val);
-            this.personName = this.val["appdetail"][0];
-            this.designation = this.val["appdetail"][2];
-          }
-        },
-        error => console.log(error)
-      );
+  getAppDetailsOnLoad(){
+    let data = { "appid" : sessionStorage.getItem("appId")};
+    this.server.getAppDetailsOnLoad(data).subscribe((res)=>{
+      if(res['status']){
+        this.personName = res["appdetail"]['employee_name'];
+        this.designation = res["appdetail"]['designation'];
+      }
+    },(error)=>{
+      console.log(error);
+    });
+
   }
+  
   ngOnDestroy() {
     clearInterval(this.refresher);
   }
   getdata() {
-    const data = {
-      c_id: this.c_id,
-      a_id: this.a_id
-    };
-
-    this.http
-      .post("http://" + this.publicIp + "/location", data, {
-        headers: new HttpHeaders().set("Content-type", "application/json")
-      })
-      .subscribe(
-        d => {
-          this.val = d as JSON;
-          this.lat = this.val["latitude"];
-          this.long = this.val["longitude"];
-        },
-        error => console.log(error)
-      );
-    if (this.lat != undefined || this.long != undefined) {
-      this.addmarker();
-    }
-    console.log(this.lat);
-    console.log(this.long);
-    console.log(this.a_id);
-    console.log(this.c_id);
-    // this.spinner.hide();
-
-    // this.http.post("http://"+this.publicIp+"/location",data,{headers:new HttpHeaders().set("Content-type", 'application/json')}).subscribe(
-    //   d=>{
-    //     this.val=d as JSON;
-    //     this.lat = this.val['latitude'];
-    //     this.long = this.val['longitude'];
-    //   },
-    // )
-    // this.showSpinner=false;
-    // if(this.lat!=null || this.long!=null){
-    // this.addmarker();
-    // }
-    console.log(this.lat);
-    console.log(this.long);
-    console.log(this.a_id);
-    console.log(this.c_id);
+    let data = {appid: sessionStorage.getItem("appId")};
+    this.server.getAppData(data).subscribe((res)=>{
+      if(res['status']){
+        this.long = res['trackingdetail']['location']['coordinates'][0];
+        this.lat = res['trackingdetail']['location']['coordinates'][1]
+       this.speed = res['trackingdetail']['speed'];
+       this.appTime = res['trackingdetail']['datetime'];
+       if (this.lat != undefined || this.long != undefined) {
+        this.addmarker();
+       }
+      }
+      
+    },(error)=>{
+      console.log(error);
+    });
   }
+
   loadmap() {
-    this.map = leaflet.map("map").setView([13.0827, 80.2707], 13);
+    this.map = leaflet.map("map").setView([13.0827, 80.2707], 17);
 
     leaflet
       .tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -133,13 +98,7 @@ export class MapsComponent implements OnInit, OnDestroy {
     this.theMarker = leaflet.marker([this.lat, this.long]).addTo(this.map);
   }
   addmarker() {
-    // console.log("adding marker");
-    // console.log(this.val);
-    // leaflet.marker([this.lat,this.long]).addTo(this.map);
-    // leaflet.marker.setLatLng([this.lat,this.long]);
-    // console.log(this.lat);
-    this.mylat += 0.01;
-    this.lat = this.mylat.toString();
+
     this.theMarker.remove();
     this.theMarker = leaflet.marker([this.lat, this.long]).addTo(this.map);
     this.map.panTo([this.lat, this.long]);

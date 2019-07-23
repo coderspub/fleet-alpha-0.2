@@ -15,6 +15,7 @@ export class AppcalendarComponent implements OnInit {
   calendarWeekends = true;
   calendarPlugins = [dayGridPlugin,timeGrigPlugin]; 
   calendarVisible = true;
+  calenderHeight = "parent"
 
   // important!
 }

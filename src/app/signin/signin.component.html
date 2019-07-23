@@ -1,7 +1,7 @@
 
 <div class="signin-bg ">
 <div class="container-fluid container d-flex align-items-center signin-holder">
-  <div class="bg-white rounded signin-content animated fadeIn">
+  <div class="bg-white rounded signin-content animated fadeIn card-5">
   <div class="row">
     <div class="col signin-content-left">
 <h1>hello</h1>
@@ -11,7 +11,7 @@
             <img src="assets/images/xcompass.svg" alt="" class="img-fluid mx-auto d-block">
             <h5 class="text-center">Sign in</h5>
               <form (ngSubmit) = "signin(f)" #f="ngForm">
-                  <div class="alert alert-danger animated fadeOut delay-3s" role="alert" *ngIf = "invalid">
+                  <div class="alert alert-danger animated fadeOut delay-3s " role="alert" *ngIf = "invalid">
                       Invalid Credentials!
                   </div>
                   <div class="alert alert-warning" role="alert" *ngIf = "forgotpassword">
@@ -40,7 +40,7 @@
                   <button type="submit" class="btn btn-primary signin-options" [disabled]="!f.valid">Sign in</button>
                   <span class="spinner-border text-success align-middle" role="status" [hidden] = "spinner"></span>
                   <button  class="btn btn-primary signin-options" (click)="signoutRedirect()">Create an account</button>
-            
+                
                 </form>
           </div>
         

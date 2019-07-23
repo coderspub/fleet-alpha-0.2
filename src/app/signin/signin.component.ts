@@ -1,73 +1,51 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { routerNgProbeToken } from "@angular/router/src/router_module";
+
 import { NgForm } from "@angular/forms";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient} from "@angular/common/http";
+import { ServerService } from "../server.service";
+import Swal from 'sweetalert2';
 @Component({
   selector: "app-signin",
   templateUrl: "./signin.component.html",
   styleUrls: ["./signin.component.scss"]
 })
 export class SigninComponent implements OnInit {
-  publicIp: string = "api.xcompass.ml";
   status: boolean = false;
-  val: JSON;
   invalid: boolean = false;
   valid: boolean = false;
   data: any;
   forgotpassword: boolean = false;
   spinner: boolean = true;
-  constructor(private router: Router, private http: HttpClient) {}
+  loggedInStatus : boolean =  false;
+  constructor(private router: Router, private http: HttpClient, private server : ServerService) {}
 
   ngOnInit() {}
-  signin(form: NgForm) {
-    this.data = form.value;
-    console.log(form.value);
-    sessionStorage.setItem("email_id", form.value.email_id);
-    this.spinner = false;
-    if (form.valid || form.value.email_id != "" || form.value.passwd != "") {
-      this.http
-        .post("http://" + this.publicIp + "/Authorize", this.data, {
-          headers: new HttpHeaders().set("Content-type", "application/json")
-        })
-        .subscribe(
-          d => {
-            console.log(d);
-            this.val = d as JSON;
-            this.spinner = true;
-            this.status = this.val["status"];
+  
+  signin(form: NgForm){
+  if(form.valid){
+        this.spinner = false;
+    this.server.signin(form.value).subscribe((res:any)=>{
+      if(res['status']){
+      this.spinner = true;
+      
+   
+    
+      }
+      else{
+        this.spinner = true;
+        Swal.fire({
+                  title: 'Alert!',
+                  text: 'Invalid Username or Password',
+                  type: 'error',
+                  confirmButtonText: 'Close'
+                })
+        console.log(res);
+      }
+    },error => { console.log(error);})
+  }
+ 
 
-            if (this.status == true) {
-              this.router.navigate(["/dashboard"]);
-              setTimeout(() => {
-                this.valid = false;
-              }, 1000);
-            } else {
-              this.invalid = true;
-              setTimeout(() => {
-                this.invalid = false;
-              }, 4000);
-            }
-          },
-          error => console.log(error)
-        );
-    }
-
-    //  this.router.navigate(['/dashboard']);
-    // console.log(form.value);
-    // console.log(this.status);
-    // if(this.status == true){
-    //   this.router.navigate(['/dashboard']);
-    //   setTimeout(() => {
-    //     this.valid = false;
-    //   }, 1000);
-    // }
-    // else{
-    //   this.invalid = true;
-    //     setTimeout(() => {
-    //       this.invalid = false;
-    //     }, 2000);
-    // }
   }
   signoutRedirect() {
     this.router.navigate(["/signup"]);

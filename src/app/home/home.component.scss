@@ -6,12 +6,14 @@
 
 .device-2{
   
-    border-radius: 4px;
-    border: 2px solid  #0FA275;
+    // border-radius: 4px;
+    // border: 2px solid  #0FA275;
 
 
   
-    color: #0FA275; /*For IE*/
+    // color: #0FA275; /*For IE*/
+    background: linear-gradient(45deg, rgba(43,135,131,1) 0%, rgba(24,149,110,1) 100%);
+    color: white;
   }
   
 
@@ -20,26 +22,23 @@
 //devoice3
 .device-3{
   
-    border-radius: 4px;
-    border: 2px solid  #D55151;
+    // border-radius: 4px;
+    // border: 2px solid  #D55151;
  
    
 
   
-    color: #D55151; /*For IE*/
+    // color: #D55151; /*For IE*/
+    background: linear-gradient(45deg, rgba(99,8,63,1) 0%, rgba(209,32,71,1) 100%);
+    color: white;
   }
   
   
 
 
   .device-1{
-  
-    border-radius: 4px;
-    border: 2px solid  rgb(145, 119, 35) ;
- 
-
-  
-    color: rgb(145, 119, 35); /*For IE*/
+   color: white;
+   background: linear-gradient(45deg, rgba(149,93,24,1) 0%, rgba(190,161,26,1) 100%);
   }
   
 

@@ -18,10 +18,10 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { CompareValidatorDirective } from './shared/compare-validator.directive';
 import { AutofocusDirective } from './shared/autofocus.directive';
-import { Loader2Component } from './loader2/loader2.component';
-import { PersontrackingComponent } from './persontracking/persontracking.component';
+
+
 import { PersontrackingdetailsComponent } from './persontrackingdetails/persontrackingdetails.component';
-import { PersontrackingnavComponent } from './persontrackingnav/persontrackingnav.component';
+
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AdddeviceComponent } from './adddevice/adddevice.component';
@@ -30,6 +30,9 @@ import { AppcalendarComponent } from './appcalendar/appcalendar.component';
 import { ReportsComponent } from './reports/reports.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // for FullCalendar!
+import { AuthGuard } from './auth.guard';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,15 +48,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     RegisterComponent,
     CompareValidatorDirective,
     AutofocusDirective,
-    Loader2Component,
-    PersontrackingComponent,
+   
+
     PersontrackingdetailsComponent,
-    PersontrackingnavComponent,
-    PagenotfoundComponent,
+   
+ 
     AdddeviceComponent,
     AppcalendarComponent,
     ReportsComponent,
-    
+    PagenotfoundComponent,
     
   ],
   imports: [
@@ -65,9 +68,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     NgxQRCodeModule,
     FullCalendarModule,
     BsDatepickerModule.forRoot(),
-    BrowserAnimationsModule // for FullCalendar!
+    BrowserAnimationsModule, // for FullCalendar!
+    SweetAlert2Module.forRoot()
   ],
-  providers: [ { provide : LocationStrategy,useClass:HashLocationStrategy }],
+  providers: [ { provide : LocationStrategy,useClass:HashLocationStrategy },AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
