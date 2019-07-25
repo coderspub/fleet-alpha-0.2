@@ -31,6 +31,8 @@ nodevice:boolean =false;
 hidetable ={ "val" : null };
 personStatus : boolean = false;
 spinner:boolean = true;
+pageloader:boolean=true;
+pagedata:boolean = false;
   constructor(private http: HttpClient,private router : Router,private server : ServerService) { 
 
   }
@@ -40,6 +42,8 @@ spinner:boolean = true;
   }
   onPersonTrackingLoad(){
     this.server.onPersonTrackingLoad().subscribe((res)=>{
+      this.pageloader = false;
+      this.pagedata = true;
       if(res['status']){
         this.appDetails = [];
         this.qrcode =[];

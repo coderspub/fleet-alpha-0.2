@@ -13,13 +13,18 @@ export class ProfileComponent implements OnInit {
   country: string;
   phonenumber : string;
   email_id : string;
-  
+  pageloader:boolean=true;
+  pagedata:boolean = false;
   constructor(private http: HttpClient,private server : ServerService) { }
  
   ngOnInit() {
 
     this.server.onProfileLoad().subscribe((res)=>{
-      console.log(res);
+      // console.log(res);
+        this.pageloader = false;
+        this.pagedata = true;
+
+      
       if(res['status']){
         this.address = res['userdetail']['address'];
         this.company_name = res['userdetail']['company_name'];

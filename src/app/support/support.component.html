@@ -2,6 +2,19 @@
   <h1><i class="fas fa-hands-helping dashi"></i>Support</h1>
   <hr>
  <div class="bg-white rounded card-1 p-3">
+    <div class="card my-3" >
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <b>Basic Person Tracking</b>
+            <span class="badge badge-primary badge-pill" style="margin: 0.5em;"*ngIf="active">Subscribed</span>
+            <span class="badge badge-primary badge-pill" style="margin: 0.5em;"*ngIf="deactive">Unsubscribed</span>
+            <h5>Track a person using x-compass fleet tracking app</h5>
+            <button type="button" class="btn btn-success btn-sm card-6" style="margin-right: 0.5em;"(click)="activate()" [disabled]="active">Active</button>
+            <button type="button" class="btn btn-danger btn-sm card-6" style="margin-right: 0.5em;" (click)="deactivate()" [disabled]="deactive">Deactivate</button>
+          </li>
+        </ul>
+      </div>
+ 
     <form>
   
             <div class="form-group">

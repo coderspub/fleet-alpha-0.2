@@ -4,6 +4,7 @@
       </ngx-spinner> -->
   <h1><i class="fas fa-user dashi"></i>Profile</h1>
   <hr>
+  <app-pageloader *ngIf="pageloader"></app-pageloader>
   <!-- <div class="bg-white rounded shadow  d-flex flex-column" >
     <div class="" >
      
@@ -51,9 +52,10 @@
       </div>
     </div>
   </div> -->
+  <div class="pagedata animated fadeIn" *ngIf="pagedata">
   <div>
     <div class="row">
-      <div class="col bg-white rounded card-1 d-flex flex-column">
+      <div class="col bg-white rounded card-1 d-flex flex-column prof">
         <div class="d-flex justify-content-between">
           <div>
             <h3>Details</h3>
@@ -76,21 +78,19 @@
           <h5 class="text-center"><b>Phone No. :</b>{{ phonenumber }}</h5>
         </div>
       </div>
-      <div class="col bg-white rounded card-1">
+      <div class="col bg-white rounded card-1 prof">
           <div class="d-flex justify-content-between">
               <div>
                 <h3>Subscriptions</h3>
               </div>
-              <div><button class="btn btn-primary badge badge-1 float-right rounded-circle" data-toggle="modal"
-                  data-target="#exampleModal"><i class="fas fa-search"></i></button> </div>
+              <div><button class="btn btn-primary badge badge-1 float-right rounded-circle" ><a routerLink="/dashboard/support"><i class="fas fa-search"></i></a></button> </div>
     
             </div><br>
-        <div class="card">
-          <div class="card-body card-1">
-            <h5 class="card-title">Basic <span class="badge badge-success float-right">Active</span></h5>
-            People Tracking with xcompass mobile app
-          </div>
-        </div>
+            <div class="card" >
+                  <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Basic Person tracking<span class="badge badge-success badge-pill float-right">Active</span></li>
+                </ul>
+              </div>
       </div>
     </div>
   </div>
@@ -116,3 +116,4 @@
       </div>
     </div>
   </div>
+</div>

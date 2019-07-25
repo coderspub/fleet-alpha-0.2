@@ -2,6 +2,8 @@
 <div class="container container-fluid scroll">
   <h1><i class="fas fa-street-view dashi"></i>Person Tracking</h1>
   <hr>
+  <app-pageloader *ngIf="pageloader"></app-pageloader>
+  <div class="pagedata animated fadeIn" *ngIf="pagedata">
     <!-- <app-persontrackingnav></app-persontrackingnav> -->
     <button class="btn btn-primary add-person card-6" data-toggle="modal" data-target="#exampleModal">Add a person</button>
     <div class="row ">
@@ -189,4 +191,4 @@
         </div>
       </div>
     </div>
-   
+   </div>

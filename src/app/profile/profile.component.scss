@@ -38,6 +38,7 @@ ul{
     }
     i{
         margin: 0em 0.2em 0em 0.2em; 
+    
     }
 }
 .avatar{
@@ -55,4 +56,13 @@ ul{
 }
 .details{
     display: inline;
+}
+.prof{
+    z-index: 1000;
+    a{
+        color: white;
+    }
+}
+.card{
+    border-radius: none;
 }

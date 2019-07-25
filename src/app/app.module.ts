@@ -32,6 +32,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // for FullCalendar!
 import { AuthGuard } from './auth.guard';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { PageloaderComponent } from './pageloader/pageloader.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     AppcalendarComponent,
     ReportsComponent,
     PagenotfoundComponent,
+    PageloaderComponent,
     
   ],
   imports: [

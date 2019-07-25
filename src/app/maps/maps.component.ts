@@ -7,9 +7,7 @@ import {
 } from "@angular/core";
 import leaflet from "leaflet";
 import "leaflet-routing-machine";
-import { FleetMapService } from "../fleet-map.service";
-import { HttpClient } from "@angular/common/http";
-import { NgxSpinnerService } from "ngx-spinner";
+
 import { Router } from "@angular/router";
 import { ServerService } from "../server.service";
 @Component({
@@ -34,12 +32,12 @@ export class MapsComponent implements OnInit, OnDestroy {
   designation: string;
   speed:string;
   appTime : string;
+  pageloader:boolean=true;
+pagedata:boolean = false;
   @ViewChild("map") mapContainer: ElementRef;
 
   constructor(
-    private fleetMap: FleetMapService,
-    private http: HttpClient,
-    private spinner: NgxSpinnerService,
+
     private router: Router,
     private server : ServerService
   ) {
@@ -56,6 +54,8 @@ export class MapsComponent implements OnInit, OnDestroy {
   getAppDetailsOnLoad(){
     let data = { "appid" : sessionStorage.getItem("appId")};
     this.server.getAppDetailsOnLoad(data).subscribe((res)=>{
+      this.pageloader = false;
+      this.pagedata = true;
       if(res['status']){
         this.personName = res["appdetail"]['employee_name'];
         this.designation = res["appdetail"]['designation'];
