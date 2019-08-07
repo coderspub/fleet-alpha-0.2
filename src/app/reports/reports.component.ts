@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import leaflet from 'leaflet';
+declare var $: any;
 @Component({
   selector: "app-reports",
   templateUrl: "./reports.component.html",
@@ -11,10 +12,11 @@ export class ReportsComponent implements OnInit {
   long:string ="80.2707";
   map:any;
   theMarker: any;
+
   constructor() {}
 
   ngOnInit() {
-    this.loadmap();
+    // this.loadmap();
   }
   generateReport(form: NgForm) {
     if (
@@ -25,15 +27,16 @@ export class ReportsComponent implements OnInit {
       console.log("enter the form");
     }
   }
-  loadmap() {
-  console.log("loadinf map");
-    this.map = leaflet.map("map").setView([13.0827,80.2707],13);
+  // loadmap() {
+  // console.log("loadinf map");
+  //   this.map = leaflet.map("map").setView([13.0827,80.2707],13);
  
-    leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attributions: 'www.sharath.com'
+  //   leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //     attributions: 'www.sharath.com'
     
-    }).addTo(this.map);
-     this.theMarker = leaflet.marker([this.lat,this.long]).addTo(this.map);
+  //   }).addTo(this.map);
+  //    this.theMarker = leaflet.marker([this.lat,this.long]).addTo(this.map);
     
-  }
+  // }
+//  data = $("#formControlRange").value;
 }

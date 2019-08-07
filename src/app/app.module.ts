@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
@@ -30,9 +30,11 @@ import { AppcalendarComponent } from './appcalendar/appcalendar.component';
 import { ReportsComponent } from './reports/reports.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // for FullCalendar!
-import { AuthGuard } from './auth.guard';
+
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { PageloaderComponent } from './pageloader/pageloader.component';
+import { TokenInterceptorService } from "./token-interceptor.service";
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { PageloaderComponent } from './pageloader/pageloader.component';
     BrowserAnimationsModule, // for FullCalendar!
     SweetAlert2Module.forRoot()
   ],
-  providers: [ { provide : LocationStrategy,useClass:HashLocationStrategy },AuthGuard],
+  providers: [ { provide : LocationStrategy,useClass:HashLocationStrategy },AuthGuard,
+    { provide : HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

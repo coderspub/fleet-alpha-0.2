@@ -14,18 +14,19 @@ export class ServerService {
   status :JSON;
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders()
   };
   constructor(private router: Router,private http: HttpClient) { }
 
   signin(data:any){
-    sessionStorage.setItem("email_id",data.email_id);
+    // sessionStorage.setItem("email_id",data.email_id);
     localStorage.setItem("email_id",data.email_id);
     return this.http.post("http://" + this.publicIp + "/Authorize",data,this.httpOptions).pipe(tap(res=>{
     if(res['status']){
-    localStorage.setItem("email_id",data.email_id);
-    localStorage.setItem("token","xx.yy.zz");
+
   
+  this.setToken();
+
       this.router.navigate(["/dashboard"]);
     
     }
@@ -116,6 +117,7 @@ export class ServerService {
    
   }
   onProfileLoad():Observable<any>{
+    console.log(this.httpOptions);
     let data = { "email_id": localStorage.getItem("email_id")};
     if(this.isLoggedIn()){
       return this.http.post("http://" + this.publicIp + "/UserDetail",data,this.httpOptions);
@@ -163,12 +165,19 @@ export class ServerService {
    else{
     Swal.fire({
       title: 'Alert!',
-      text: 'Tampered or broken token',
+      text: 'UnAuthorized - Login to continue',
       type: 'error',
       confirmButtonText: 'Close'
     })
-      this.router.navigate(["/"]);
+   
+      
+      return false;
+      
+      
     }
+  }
+  setToken(){
+localStorage.setItem("token","xx.yy.zz");
   }
   
 }

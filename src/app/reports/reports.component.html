@@ -28,6 +28,13 @@
     </form>
   </div> -->
   <div class="bg-white rounded p-3 card-1 ">
+      <form>
+          <div class="form-group">
+            <label for="formControlRange">Example Range input</label>
+            <input type="range" class="form-control-range" id="formControlRange" [(ngModel)]="data">
+          </div>
+        </form>
+        <p>{{ data }}</p>
     <!-- <div class="report-header">
   <form class="form" (ngSubmit)="generateReport(g)" #g="ngForm">
       <div class="form-col mb-2">
@@ -52,7 +59,7 @@
       <button type="submit" class="btn btn-primary mb-2">Generate Report</button>
     </form>
   </div> -->
-  <form (ngSubmit)="generateReport(g)" #g="ngForm">
+  <!-- <form (ngSubmit)="generateReport(g)" #g="ngForm">
       <div class="row">
         <div class="col">
             <select id="deviceid" class="form-control" ngModel name="deviceId" #deviceId="ngModel">
@@ -70,15 +77,15 @@
             <button type="submit" class="form-control btn btn-primary">Generate Report</button>
         </div>
       </div>
-    </form>
-    <div id="map"></div>
+    </form> -->
+    <!-- <div id="map"></div> -->
     </div>
-    <div id="time-range">
+    <!-- <div id="time-range">
         <p>Time Range: <span class="slider-time">9:00 AM</span> - <span class="slider-time2">5:00 PM</span>
     
         </p>
         <div class="sliders_step1">
             <div id="slider-range"></div>
         </div>
-    </div>
+    </div> -->
 </div>
