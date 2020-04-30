@@ -27,7 +27,7 @@
     "angularx-qrcode": "^1.5.3",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "leaflet": "^1.4.0",
     "leaflet-routing-machine": "^3.2.12",
     "ngx-bootstrap": "^5.0.0",
